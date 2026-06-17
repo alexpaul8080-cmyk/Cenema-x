@@ -2044,7 +2044,8 @@ function slPreview(i){
 
 function applySlides(){
   const data=loadSlides();
-  const imgStyle='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:12px';
+  const absStyle='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:12px';
+  const visualIds=['sl-visual-0','sl-visual-1','sl-visual-2','sl-visual-3'];
   data.forEach((d,i)=>{
     const labelEl=document.getElementById(`sl-label-${i}`);
     const titleEl=document.getElementById(`sl-title-${i}`);
@@ -2052,29 +2053,17 @@ function applySlides(){
     if(labelEl) labelEl.textContent=d.label||labelEl.textContent;
     if(titleEl) titleEl.innerHTML=d.title||titleEl.innerHTML;
     if(descEl)  descEl.textContent=d.desc||descEl.textContent;
-    if(i===0 && d.img){
-      const v=document.getElementById('sl-visual-0');
-      if(v) v.innerHTML=`<img src="${d.img}" style="${imgStyle}">`;
-    }
-    if(i===1){
-      const v=document.getElementById('sl-visual-1');
+    if(i<=3){
+      const v=document.getElementById(visualIds[i]);
       if(v && d.img){
-        v.style.cssText='position:absolute;inset:0';
-        v.innerHTML=`<img src="${d.img}" style="${imgStyle}">`;
-      }
-    }
-    if(i===2){
-      const wrap=document.getElementById('sl-visual-2');
-      if(wrap && d.img){
-        wrap.style.cssText='position:absolute;inset:0;z-index:1';
-        wrap.innerHTML=`<img src="${d.img}" style="${imgStyle}">`;
-      }
-    }
-    if(i===3){
-      const wrap=document.getElementById('sl-visual-3');
-      if(wrap && d.img){
-        wrap.style.cssText='position:absolute;inset:0';
-        wrap.innerHTML=`<img src="${d.img}" style="${imgStyle}">`;
+        // Reset any inline styles that would interfere with the full-cover image
+        v.style.cssText='position:absolute;inset:0;padding:0;gap:0;display:block';
+        const img=document.createElement('img');
+        img.src=d.img;
+        img.style.cssText=absStyle;
+        img.onerror=function(){ img.style.display='none'; };
+        v.innerHTML='';
+        v.appendChild(img);
       }
     }
     if(i===4){
@@ -2522,7 +2511,9 @@ function escHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&q
       // Clear if contains old relative paths OR all images are empty (stale blank cache)
       if(raw.includes('assets/Images/')) return true;
       const parsed = JSON.parse(raw);
-      if(Array.isArray(parsed) && parsed.every(function(d){ return !d.img; })) return true;
+      // Only check items that are expected to have images (not bundle slide s4)
+      const imgItems = parsed.filter(function(d){ return d.id !== 's4'; });
+      if(Array.isArray(imgItems) && imgItems.length > 0 && imgItems.every(function(d){ return !d.img; })) return true;
       return false;
     }catch(e){ return false; }
   }
@@ -2530,11 +2521,15 @@ function escHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&q
   if(shouldClear('cx_slides'))  localStorage.removeItem('cx_slides');
 })();
 
-// Apply on load
+// Apply on load — slides need DOM ready so run after DOMContentLoaded
 applyAssets();
-applySlides();
 applyMedia();
 applyYoutube();
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded', function(){ applySlides(); });
+} else {
+  applySlides();
+}
 // Initial badge check (after testimonials IIFE runs)
 setTimeout(updateNotifBadge, 500);
 
