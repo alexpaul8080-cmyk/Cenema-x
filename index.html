@@ -1966,43 +1966,28 @@ document.addEventListener('keydown', function(e){
 
 // Asset data — editable via admin
 const ASSET_DEFAULTS = [
-  {id:'a0', name:'Cinematic Mobile Presets',   meta:'45 moody film presets · Lightroom Mobile', emoji:'🎞', img:'assets/images/cinematic-mobile-presets.jpg',  link:'YOUR_MEGA_LINK'},
-  {id:'a1', name:'Desktop Preset Collection',  meta:'60 pro presets · Lightroom Classic',        emoji:'🖥', img:'assets/images/desktop-preset-collection.jpg', link:'YOUR_MEGA_LINK'},
-  {id:'a2', name:'Whip & Zoom Transitions',    meta:'150 transitions · Premiere Pro',            emoji:'⚡', img:'assets/images/whip-zoom-transitions.jpg',      link:'YOUR_MEGA_LINK'},
-  {id:'a3', name:'Film Grain + Light Leaks',   meta:'120 analog overlays · 4K ProRes',           emoji:'🌫', img:'assets/images/film-grain-light-leaks.jpg',     link:'YOUR_MEGA_LINK'},
-  {id:'a4', name:'AutoCut Pro Plugin',         meta:'Beat-sync cutting tool · Premiere Pro',     emoji:'🎬', img:'assets/images/autocut-pro-plugin.jpg',         link:'YOUR_MEGA_LINK'},
-  {id:'a5', name:'Glitch & Distort FX',        meta:'80 presets · After Effects',                emoji:'✨', img:'assets/images/glitch-distort-fx.jpg',          link:'YOUR_MEGA_LINK'},
-  {id:'a6', name:'Void Display Font Pack',     meta:'5 exclusive display fonts',                 emoji:'🔤', img:'assets/images/void-display-font-pack.jpg',     link:'YOUR_MEGA_LINK'},
-  {id:'a7', name:'Social Media PSD Kit',       meta:'40 templates · Instagram & YouTube',        emoji:'🗂', img:'assets/images/social-media-psd-kit.jpg',       link:'YOUR_MEGA_LINK'},
-  {id:'a8', name:'Dark Matter 3D Pack',        meta:'60 high-res 3D renders',                    emoji:'⬡', img:'assets/images/dark-matter-3d-pack.jpg',        link:'YOUR_MEGA_LINK'},
-  {id:'a9', name:'SFX Bundle',                 meta:'200+ cinematic sound effects',              emoji:'🔊', img:'assets/images/sfx-bundle.jpg',                 link:'YOUR_MEGA_LINK'},
+  {id:'a0', name:'Cinematic Mobile Presets',   meta:'45 moody film presets · Lightroom Mobile', emoji:'🎞', img:'assets/Images/cinematic-mobile-presets.jpg',  link:'YOUR_MEGA_LINK'},
+  {id:'a1', name:'Desktop Preset Collection',  meta:'60 pro presets · Lightroom Classic',        emoji:'🖥', img:'assets/Images/desktop-preset-collection.jpg', link:'YOUR_MEGA_LINK'},
+  {id:'a2', name:'Whip & Zoom Transitions',    meta:'150 transitions · Premiere Pro',            emoji:'⚡', img:'assets/Images/whip-zoom-transitions.jpg',      link:'YOUR_MEGA_LINK'},
+  {id:'a3', name:'Film Grain + Light Leaks',   meta:'120 analog overlays · 4K ProRes',           emoji:'🌫', img:'assets/Images/film-grain-light-leaks.jpg',     link:'YOUR_MEGA_LINK'},
+  {id:'a4', name:'AutoCut Pro Plugin',         meta:'Beat-sync cutting tool · Premiere Pro',     emoji:'🎬', img:'assets/Images/autocut-pro-plugin.jpg',         link:'YOUR_MEGA_LINK'},
+  {id:'a5', name:'Glitch & Distort FX',        meta:'80 presets · After Effects',                emoji:'✨', img:'assets/Images/glitch-distort-fx.jpg',          link:'YOUR_MEGA_LINK'},
+  {id:'a6', name:'Void Display Font Pack',     meta:'5 exclusive display fonts',                 emoji:'🔤', img:'assets/Images/void-display-font-pack.jpg',     link:'YOUR_MEGA_LINK'},
+  {id:'a7', name:'Social Media PSD Kit',       meta:'40 templates · Instagram & YouTube',        emoji:'🗂', img:'assets/Images/social-media-psd-kit.jpg',       link:'YOUR_MEGA_LINK'},
+  {id:'a8', name:'Dark Matter 3D Pack',        meta:'60 high-res 3D renders',                    emoji:'⬡', img:'assets/Images/dark-matter-3d-pack.jpg',        link:'YOUR_MEGA_LINK'},
+  {id:'a9', name:'SFX Bundle',                 meta:'200+ cinematic sound effects',              emoji:'🔊', img:'assets/Images/sfx-bundle.jpg',                 link:'YOUR_MEGA_LINK'},
 ];
 
 const SLIDE_DEFAULTS = [
-  {id:'s0', label:'Photo',         title:'Cinematic presets for every shot.',      desc:'45 mobile + 60 desktop Lightroom presets. Moody, filmic, editorial.', emoji:'🎞', img:'assets/images/slide-photo.jpg'},
-  {id:'s1', label:'Video',         title:'150 transitions drag & drop.',           desc:'Whip pans, zooms, glitches, and smooth cuts. Built for Premiere Pro.',         img:'assets/images/slide-video.jpg'},
-  {id:'s2', label:'Overlays',      title:'Analog grain & light leaks.',            desc:'120 film grain overlays and light leaks in 4K ProRes.', emoji:'🎞',            img:'assets/images/slide-overlays.jpg'},
-  {id:'s3', label:'Design + Audio',title:'Fonts, PSDs & SFX.',                    desc:'5 display fonts, 40 PSD social templates, and 200+ cinematic sound effects.', emoji:'🔊', img:'assets/images/slide-design-audio.jpg'},
+  {id:'s0', label:'Photo',         title:'Cinematic presets for every shot.',      desc:'45 mobile + 60 desktop Lightroom presets. Moody, filmic, editorial.', emoji:'🎞', img:'assets/Images/slide-photo.jpg'},
+  {id:'s1', label:'Video',         title:'150 transitions drag & drop.',           desc:'Whip pans, zooms, glitches, and smooth cuts. Built for Premiere Pro.',         img:'assets/Images/slide-video.jpg'},
+  {id:'s2', label:'Overlays',      title:'Analog grain & light leaks.',            desc:'120 film grain overlays and light leaks in 4K ProRes.', emoji:'🎞',            img:'assets/Images/slide-overlays.jpg'},
+  {id:'s3', label:'Design + Audio',title:'Fonts, PSDs & SFX.',                    desc:'5 display fonts, 40 PSD social templates, and 200+ cinematic sound effects.', emoji:'🔊', img:'assets/Images/slide-design-audio.jpg'},
   {id:'s4', label:'Bundle',        title:'Get the full bundle.',                   desc:'400+ files. Every pack. One download. Free forever.', bundleLink:'YOUR_MEGA_LINK'},
 ];
 
 function loadSlides(){
-  try{
-    const saved = JSON.parse(localStorage.getItem('cx_slides'));
-    if(!saved) return SLIDE_DEFAULTS;
-    // Always use the latest img path from SLIDE_DEFAULTS
-    return SLIDE_DEFAULTS.map(function(def){
-      const s = saved.find(function(x){ return x.id === def.id; }) || {};
-      return Object.assign({}, def, {
-        label:      s.label      || def.label,
-        title:      s.title      || def.title,
-        desc:       s.desc       || def.desc,
-        emoji:      s.emoji      || def.emoji,
-        bundleLink: s.bundleLink || def.bundleLink,
-        img:        def.img        // ← always use the path baked into the HTML
-      });
-    });
-  }
+  try{ return JSON.parse(localStorage.getItem('cx_slides')) || SLIDE_DEFAULTS; }
   catch{ return SLIDE_DEFAULTS; }
 }
 function saveSlides(data){ localStorage.setItem('cx_slides', JSON.stringify(data)); }
@@ -2099,22 +2084,7 @@ function applySlides(){
   });
 }
 function loadAssets(){
-  try{
-    const saved = JSON.parse(localStorage.getItem('cx_assets'));
-    if(!saved) return ASSET_DEFAULTS;
-    // Always use the latest img path from ASSET_DEFAULTS so GitHub image
-    // updates are never blocked by stale localStorage data.
-    return ASSET_DEFAULTS.map(function(def){
-      const s = saved.find(function(x){ return x.id === def.id; }) || {};
-      return Object.assign({}, def, {
-        name:  s.name  || def.name,
-        meta:  s.meta  || def.meta,
-        link:  s.link  || def.link,
-        emoji: s.emoji || def.emoji,
-        img:   def.img   // ← always use the path baked into the HTML
-      });
-    });
-  }
+  try{ return JSON.parse(localStorage.getItem('cx_assets')) || ASSET_DEFAULTS; }
   catch{ return ASSET_DEFAULTS; }
 }
 
