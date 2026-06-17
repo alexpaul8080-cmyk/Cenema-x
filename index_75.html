@@ -1,0 +1,2627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CENEMA-X — Free Creative Assets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080604;
+  --bg2:#100b08;
+  --bg3:#180f0b;
+  --accent:#C72605;
+  --accent2:#e03010;
+  --glow:rgba(199,38,5,0.2);
+  --white:#fdf8f6;
+  --muted:#7a706d;
+  --muted2:#4a4240;
+  --border:rgba(199,38,5,0.12);
+  --border2:rgba(255,255,255,0.06);
+  --h:'Syne',sans-serif;
+  --b:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--b);font-size:14px;line-height:1.6;cursor:none;overflow-x:hidden;min-height:100vh}
+
+#cur{position:fixed;width:10px;height:10px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s;mix-blend-mode:screen}
+#cur2{position:fixed;width:32px;height:32px;border:1px solid rgba(199,38,5,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s,height .25s}
+body:has(a:hover) #cur,body:has(button:hover) #cur{width:18px;height:18px}
+body:has(a:hover) #cur2,body:has(button:hover) #cur2{width:44px;height:44px;border-color:rgba(199,38,5,0.7)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:64px;border-bottom:1px solid transparent;transition:all .3s}
+nav.s{background:rgba(8,6,4,0.9);backdrop-filter:blur(16px);border-color:var(--border2)}
+.logo{font-family:var(--h);font-size:18px;font-weight:800;letter-spacing:0.12em;text-decoration:none;display:flex;align-items:center;gap:0}
+.cx-white{color:#fdf8f6 !important}
+.cx-red{color:#C72605 !important}
+
+/* ── BASE LETTER STYLES + EMBER BURN ─────────────────────────── */
+.cx-letter{display:inline-block;position:relative}
+.cx-letter .top{display:block}
+.cx-letter .bot{display:none}
+.cx-letter.burn .top{animation:emberBurn 0.7s ease forwards}
+@keyframes emberBurn{
+  0%  {color:inherit; text-shadow:none;                                          transform:translateY(0px)  scale(1)   }
+  20% {color:#ff9944; text-shadow:0 0 8px #ff6600,0 0 20px rgba(199,38,5,0.8);  transform:translateY(-3px) scale(1.08)}
+  45% {color:#C72605; text-shadow:0 0 14px #C72605,0 0 30px rgba(199,38,5,0.6); transform:translateY(-5px) scale(1.12)}
+  70% {color:#ff7733; text-shadow:0 0 6px #ff4400,0 0 12px rgba(199,38,5,0.4);  transform:translateY(-2px) scale(1.04)}
+  100%{color:inherit; text-shadow:none;                                          transform:translateY(0px)  scale(1)   }
+}
+.cx-letter.cx-red.burn .top{animation:emberBurnRed 0.7s ease forwards}
+@keyframes emberBurnRed{
+  0%  {color:#C72605;text-shadow:none;                                               transform:translateY(0px)  scale(1)   }
+  20% {color:#ffaa44;text-shadow:0 0 8px #ff8800,0 0 20px rgba(255,140,0,0.8);       transform:translateY(-3px) scale(1.08)}
+  45% {color:#ffcc44;text-shadow:0 0 14px #ffaa00,0 0 30px rgba(255,170,0,0.6);      transform:translateY(-5px) scale(1.12)}
+  70% {color:#ff8833;text-shadow:0 0 6px #ff6600,0 0 12px rgba(199,38,5,0.4);        transform:translateY(-2px) scale(1.04)}
+  100%{color:#C72605;text-shadow:none;                                               transform:translateY(0px)  scale(1)   }
+}
+
+/* ── HIGH-FREQUENCY SHAKE — logo wrapper on hover ────────────
+   Duration matches ember burn (~1.2s). Very subtle intensity.
+──────────────────────────────────────────────────────────────── */
+.logo-shake{
+  animation: logoShake 1.2s cubic-bezier(0.36,0.07,0.19,0.97) forwards;
+  transform-origin: center;
+}
+@keyframes logoShake{
+  0%  {transform:translate(0,0)       rotate(0deg)   }
+  4%  {transform:translate(-0.5px, 0.5px) rotate(-0.1deg)}
+  8%  {transform:translate( 0.5px,-0.5px) rotate( 0.1deg)}
+  12% {transform:translate(-1px,   0.5px) rotate(-0.15deg)}
+  16% {transform:translate( 1px,  -0.5px) rotate( 0.15deg)}
+  20% {transform:translate(-0.5px, 0.5px) rotate(-0.1deg)}
+  24% {transform:translate( 0.5px,-0.5px) rotate( 0.1deg)}
+  28% {transform:translate(-1px,   0.5px) rotate(-0.12deg)}
+  32% {transform:translate( 1px,  -0.5px) rotate( 0.12deg)}
+  36% {transform:translate(-0.5px, 0.5px) rotate(-0.08deg)}
+  40% {transform:translate( 0.5px,-0.5px) rotate( 0.08deg)}
+  48% {transform:translate(-0.5px, 0px  ) rotate(-0.07deg)}
+  56% {transform:translate( 0.5px, 0px  ) rotate( 0.07deg)}
+  64% {transform:translate(-0.5px, 0px  ) rotate(-0.05deg)}
+  72% {transform:translate( 0.5px, 0px  ) rotate( 0.05deg)}
+  84% {transform:translate(-0.5px, 0px  ) rotate(-0.03deg)}
+  92% {transform:translate( 0.5px, 0px  ) rotate( 0.03deg)}
+  100%{transform:translate(0,0)       rotate(0deg)   }
+}
+
+/* hero title needs separate shake since it's block-level flex */
+.hero-title.logo-shake{
+  animation: logoShake 1.2s cubic-bezier(0.36,0.07,0.19,0.97) forwards;
+}
+.hero-title{
+  font-family:var(--h);
+  font-size:clamp(48px,9vw,120px);
+  font-weight:800;
+  line-height:0.9;
+  letter-spacing:-0.03em;
+  margin-bottom:24px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:nowrap;
+}
+
+/* ── HERO LOGO DELAYED ENTRANCE — appears after 9s ────────────
+   heroTitle, eyebrow, tagline all hidden on load.
+   JS adds .hero-show after 9s which triggers the transition.
+──────────────────────────────────────────────────────────────── */
+.hero-delayed{
+  opacity:0;
+  transform:translateY(28px) scale(0.97);
+  transition:
+    opacity  1.1s cubic-bezier(0.16,1,0.3,1),
+    transform 1.1s cubic-bezier(0.16,1,0.3,1);
+  will-change:transform,opacity;
+}
+.hero-delayed.hero-d1{ transition-delay:0s }
+.hero-delayed.hero-d2{ transition-delay:0.18s }
+.hero-delayed.hero-d3{ transition-delay:0.32s }
+.hero-delayed.hero-show{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
+/* ── SCROLL ANIMATIONS — iPhone-style rubber band & wiggle ────
+   Elements spring in from below with elastic overshoot.
+   Cards get a 3D tilt pop. Sections wiggle slightly on enter.
+──────────────────────────────────────────────────────────────── */
+
+/* Base hidden state */
+.reveal{
+  opacity:0;
+  transform:translateY(32px) scale(0.97);
+  transition:
+    opacity  0.65s cubic-bezier(0.16,1,0.3,1),
+    transform 0.65s cubic-bezier(0.16,1,0.3,1);
+  will-change:transform,opacity;
+}
+.reveal.v{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
+/* Stagger helpers */
+.rev-d1{transition-delay:0.07s}
+.rev-d2{transition-delay:0.14s}
+.rev-d3{transition-delay:0.21s}
+.rev-d4{transition-delay:0.28s}
+
+/* Card pop — 3D tilt rise with rubber band */
+.card-reveal{
+  opacity:0;
+  transform:translateY(48px) rotateX(10deg) scale(0.95);
+  filter:blur(2px);
+  transform-origin:bottom center;
+  transition:
+    opacity   0.6s cubic-bezier(0.16,1,0.3,1),
+    transform 0.6s cubic-bezier(0.34,1.3,0.64,1),
+    filter    0.5s ease;
+  will-change:transform,opacity,filter;
+}
+.card-reveal.v{
+  opacity:1;
+  transform:translateY(0) rotateX(0deg) scale(1);
+  filter:blur(0);
+}
+
+/* Section wiggle — subtle rotation on entry */
+.wiggle-reveal{
+  opacity:0;
+  transform:translateY(40px) rotate(-0.8deg);
+  transition:
+    opacity   0.7s cubic-bezier(0.16,1,0.3,1),
+    transform 0.7s cubic-bezier(0.34,1.2,0.64,1);
+}
+.wiggle-reveal.v{
+  opacity:1;
+  transform:translateY(0) rotate(0deg);
+}
+
+/* Pop scale — for stat numbers, badges */
+.pop-reveal{
+  opacity:0;
+  transform:scale(0.7) translateY(16px);
+  transition:
+    opacity   0.5s cubic-bezier(0.34,1.56,0.64,1),
+    transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+.pop-reveal.v{
+  opacity:1;
+  transform:scale(1) translateY(0);
+}
+
+/* Ticker slide-in */
+.ticker-reveal{
+  opacity:0;
+  transform:translateX(-24px);
+  transition:opacity 0.6s ease, transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.ticker-reveal.v{opacity:1;transform:translateX(0)}
+.nav-r{display:flex;align-items:center;gap:24px}
+.nav-r a{color:var(--muted);text-decoration:none;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;transition:color .2s}
+.nav-r a:hover{color:var(--white)}
+.nav-free{background:var(--accent);color:white;border:none;padding:9px 20px;font-family:var(--b);font-size:12px;font-weight:500;letter-spacing:0.06em;border-radius:6px;cursor:none;transition:all .2s}
+.nav-free:hover{background:var(--accent2);box-shadow:0 0 20px var(--glow)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding:18vh 40px 60px;position:relative;overflow:hidden}
+
+/* ── hero video background ── */
+#heroBgVideo{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position: center 0%;
+  z-index:0;           /* behind everything in .hero */
+  opacity:1;
+  pointer-events:none;
+  transform: translateY(-30%); 
+}
+
+/* dark overlay so the logo stays readable */
+.hero-video-overlay{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at center,
+    rgba(8,6,4,0.35) 0%,
+    rgba(8,6,4,0.70) 100%);
+  z-index:1;
+  pointer-events:none;
+}
+
+/* all hero content sits above the video */
+.hero > *:not(#heroBgVideo):not(.hero-video-overlay){
+  position:relative;
+  z-index:2;
+}
+
+/* original red glow — keep but move to z-index 1 so it blends with video */
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(199,38,5,0.12) 0%,transparent 70%);pointer-events:none;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent2);margin-bottom:32px}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:24px;height:1px;background:var(--accent)}
+.hero-title{font-family:var(--h);font-size:clamp(48px,9vw,120px);font-weight:800;line-height:0.9;letter-spacing:-0.03em;margin-bottom:24px}
+.hero-title span.top,.hero-title span.bot{color:inherit}
+.hero-desc{color:var(--muted);font-size:16px;max-width:440px;margin:0 auto 40px;line-height:1.7}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-main{background:var(--accent);color:white;border:none;padding:14px 32px;font-family:var(--b);font-size:13px;font-weight:500;border-radius:6px;cursor:none;box-shadow:0 0 32px var(--glow);transition:all .2s}
+.btn-main:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 0 48px rgba(199,38,5,0.4)}
+.btn-out{background:transparent;color:var(--muted);border:1px solid var(--border2);padding:14px 32px;font-family:var(--b);font-size:13px;font-weight:400;border-radius:6px;cursor:none;transition:all .2s}
+.btn-out:hover{color:var(--white);border-color:rgba(255,255,255,0.15)}
+.hero-stats{display:flex;gap:0;margin-top:72px;border:1px solid var(--border2);border-radius:10px;overflow:hidden}
+.hstat{flex:1;padding:20px 24px;text-align:center;border-right:1px solid var(--border2)}
+.hstat:last-child{border-right:none}
+.hstat-n{font-family:var(--h);font-size:26px;font-weight:700;color:var(--white)}
+.hstat-l{font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-top:2px}
+
+.hero-tagline{color:rgba(255,255,255,0.28);font-size:15px;max-width:520px;margin:20px auto 0;line-height:1.75;text-align:center;font-weight:400;letter-spacing:0.01em;transition:color 0.4s ease;cursor:default}
+.hero-tagline:hover{color:#ffffff}
+.ticker{border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);padding:12px 0;overflow:hidden;background:var(--bg2)}
+.ticker-track{display:flex;animation:tick 30s linear infinite;width:max-content}
+.tick-item{display:flex;align-items:center;gap:12px;padding:0 28px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.tick-dot{width:3px;height:3px;background:var(--accent);border-radius:50%;flex-shrink:0}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* MAIN CONTENT */
+.main{padding:72px 40px;max-width:1100px;margin:0 auto}
+
+/* TABS */
+.tabs-wrap{display:flex;gap:0;border:1px solid var(--border2);border-radius:8px;overflow:hidden;margin-bottom:48px;background:var(--bg2)}
+.tab-btn{flex:1;background:transparent;border:none;color:var(--muted);padding:14px 8px;font-family:var(--b);font-size:12px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;cursor:none;transition:all .2s;border-right:1px solid var(--border2);position:relative}
+.tab-btn:last-child{border-right:none}
+.tab-btn.active{color:var(--white);background:var(--bg3)}
+.tab-btn.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent)}
+.tab-btn:hover:not(.active){color:var(--white);background:rgba(255,255,255,0.02)}
+.tab-count{display:inline-block;font-size:10px;color:var(--accent2);margin-left:6px;font-weight:400}
+
+/* ASSET GRID */
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.asset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.asset-card{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;overflow:hidden;transition:border-color .2s,transform .2s;cursor:none}
+.asset-card:hover{border-color:rgba(199,38,5,0.3);transform:translateY(-3px)}
+.asset-thumb{height:160px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:40px;position:relative;overflow:hidden;border-bottom:1px solid var(--border2)}
+.asset-thumb-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,rgba(199,38,5,0.1),transparent 70%)}
+.asset-emoji{position:relative;z-index:1;font-size:36px}
+.asset-badge{position:absolute;top:10px;right:10px;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:100px;font-family:var(--b);font-weight:500}
+.badge-free{background:rgba(199,38,5,0.15);color:var(--accent2);border:1px solid var(--border)}
+.badge-new{background:var(--accent);color:white}
+.asset-body{padding:16px}
+.asset-name{font-family:var(--h);font-size:15px;font-weight:700;margin-bottom:4px;color:var(--white)}
+.asset-meta{font-size:12px;color:var(--muted);margin-bottom:14px}
+.asset-foot{display:flex;align-items:center;justify-content:space-between}
+.asset-format{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted2);display:flex;gap:6px;flex-wrap:wrap}
+.fmt{background:rgba(255,255,255,0.05);padding:3px 7px;border-radius:4px;border:1px solid var(--border2)}
+.dl-btn{display:flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--border);color:var(--accent2);padding:7px 14px;font-family:var(--b);font-size:11px;font-weight:500;border-radius:6px;cursor:none;transition:all .2s;text-decoration:none;white-space:nowrap}
+.dl-btn:hover{background:var(--accent);color:white;border-color:var(--accent);box-shadow:0 0 16px var(--glow)}
+.dl-icon{width:12px;height:12px;flex-shrink:0}
+
+/* BUNDLE SECTION */
+.bundle{margin-top:56px;background:var(--bg2);border:1px solid rgba(199,38,5,0.2);border-radius:12px;padding:48px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;position:relative;overflow:hidden}
+.bundle::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(199,38,5,0.1),transparent 70%);pointer-events:none}
+.bundle-label{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.bundle-title{font-family:var(--h);font-size:28px;font-weight:800;line-height:1.1;margin-bottom:12px}
+.bundle-desc{color:var(--muted);font-size:14px;line-height:1.7;max-width:480px}
+.bundle-right{text-align:center;flex-shrink:0}
+.bundle-price{font-family:var(--h);font-size:48px;font-weight:800;color:var(--accent);line-height:1}
+.bundle-price-label{font-size:12px;color:var(--muted);margin-top:4px;margin-bottom:20px}
+.bundle-items{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}
+.b-tag{font-size:10px;color:var(--muted);background:rgba(255,255,255,0.04);border:1px solid var(--border2);padding:4px 10px;border-radius:100px}
+
+/* ABOUT */
+.about{margin-top:56px;display:grid;grid-template-columns:1fr;gap:0;padding:48px;background:var(--bg2);border:1px solid var(--border2);border-radius:12px}
+.about-label{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.about-title{font-family:var(--h);font-size:28px;font-weight:800;line-height:1.1;margin-bottom:16px}
+.about-desc{color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:24px}
+.about-right{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.about-stat{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:20px;text-align:center}
+.about-stat-n{font-family:var(--h);font-size:28px;font-weight:700;color:var(--white)}
+.about-stat-l{font-size:11px;color:var(--muted);margin-top:4px}
+
+/* FOOTER */
+/* ── COMMUNITY / TESTIMONIALS ────────────────────────────────── */
+.community-wrap{padding:80px 40px;max-width:900px;margin:0 auto}
+.community-label{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.community-label::before{content:'';display:block;width:20px;height:1px;background:var(--accent)}
+.community-title{font-family:var(--h);font-size:28px;font-weight:800;color:var(--white);line-height:1.1;margin-bottom:8px}
+.community-sub{color:var(--muted);font-size:14px;margin-bottom:40px;line-height:1.7}
+.cx-form{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:32px;margin-bottom:48px}
+.cx-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.cx-input{width:100%;background:var(--bg3);border:1px solid var(--border2);color:var(--white);font-family:var(--b);font-size:13px;padding:12px 16px;border-radius:8px;outline:none;transition:border-color .2s,box-shadow .2s;cursor:text}
+.cx-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(199,38,5,0.12)}
+.cx-input::placeholder{color:var(--muted2)}
+textarea.cx-input{min-height:110px;resize:vertical;width:100%;margin-bottom:16px;display:block}
+.cx-submit{background:var(--accent);color:#fff;border:none;padding:12px 32px;font-family:var(--b);font-size:13px;font-weight:600;letter-spacing:0.06em;border-radius:6px;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 0 20px var(--glow)}
+.cx-submit:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 0 32px rgba(199,38,5,0.4)}
+.cx-submit:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.cx-form-msg{margin-top:14px;font-size:13px;display:none;padding:10px 16px;border-radius:6px}
+.cx-form-msg.ok{display:block;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#4ade80}
+.cx-form-msg.err{display:block;background:rgba(199,38,5,0.1);border:1px solid var(--border);color:var(--accent2)}
+.testi-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.testi-heading{font-family:var(--h);font-size:18px;font-weight:700;color:var(--white)}
+.testi-count{font-size:12px;color:var(--muted);background:var(--bg2);border:1px solid var(--border2);padding:4px 12px;border-radius:100px}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.testi-card{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:20px;transition:border-color .2s,transform .2s;animation:cardFadeIn 0.5s cubic-bezier(0.16,1,0.3,1) both}
+.testi-card:hover{border-color:rgba(199,38,5,0.25);transform:translateY(-2px)}
+@keyframes cardFadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.testi-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#ff7733);display:flex;align-items:center;justify-content:center;font-family:var(--h);font-size:14px;font-weight:800;color:#fff;flex-shrink:0}
+.testi-name{font-family:var(--h);font-size:14px;font-weight:700;color:var(--white);margin-bottom:2px}
+.testi-date{font-size:11px;color:var(--muted2);margin-bottom:10px}
+.testi-msg{font-size:13px;color:var(--muted);line-height:1.7;border-top:1px solid var(--border2);padding-top:10px}
+.testi-stars{color:var(--accent);font-size:13px;margin-bottom:10px;letter-spacing:2px}
+.testi-empty{grid-column:1/-1;text-align:center;padding:40px;color:var(--muted2);font-size:14px;border:1px dashed var(--border2);border-radius:10px}
+
+/* ── YOUTUBE SECTION ─────────────────────────────────────────── */
+.yt-section{padding:80px 40px;max-width:1200px;margin:0 auto}
+.yt-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:44px;flex-wrap:wrap;gap:20px}
+.yt-label{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.yt-label::before{content:'';display:block;width:20px;height:1px;background:var(--accent)}
+.yt-title{font-family:var(--h);font-size:32px;font-weight:800;line-height:1.1;color:var(--white)}
+.yt-sub-btn{display:inline-flex;align-items:center;gap:10px;background:#FF0000;color:#fff;border:none;padding:13px 26px;font-family:var(--b);font-size:13px;font-weight:600;letter-spacing:0.04em;border-radius:6px;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 0 28px rgba(255,0,0,0.3);white-space:nowrap}
+.yt-sub-btn:hover{background:#cc0000;transform:translateY(-2px);box-shadow:0 0 40px rgba(255,0,0,0.45)}
+.yt-sub-btn svg{width:22px;height:22px;fill:#fff;flex-shrink:0}
+.yt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:900px){.yt-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.yt-grid{grid-template-columns:1fr}.yt-section{padding:48px 20px}.yt-header{flex-direction:column;align-items:flex-start}.cx-form-row{grid-template-columns:1fr}.community-wrap{padding:48px 20px}}
+.yt-card{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;text-decoration:none;display:block}
+.yt-card:hover{border-color:rgba(255,0,0,0.45);transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,0.4)}
+.yt-thumb{position:relative;width:100%;aspect-ratio:16/9;background:var(--bg3);overflow:hidden}
+.yt-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.yt-card:hover .yt-thumb img{transform:scale(1.05)}
+.yt-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.22);transition:background .25s}
+.yt-card:hover .yt-overlay{background:rgba(0,0,0,0.05)}
+.yt-play{width:52px;height:52px;background:rgba(255,0,0,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform .2s,background .2s;box-shadow:0 4px 20px rgba(255,0,0,0.5)}
+.yt-card:hover .yt-play{transform:scale(1.12);background:#FF0000}
+.yt-play svg{width:22px;height:22px;fill:#fff;margin-left:4px}
+.yt-info{padding:14px 16px 18px}
+.yt-vtitle{font-family:var(--h);font-size:13px;font-weight:700;color:var(--white);line-height:1.45;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.yt-vmeta{font-size:11px;color:var(--muted);letter-spacing:0.04em;display:flex;align-items:center;gap:6px}
+.yt-vmeta::before{content:'';display:inline-block;width:6px;height:6px;background:#FF0000;border-radius:50%;flex-shrink:0}
+.yt-view-all{text-align:center;margin-top:36px}
+.yt-view-all a{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;letter-spacing:0.06em;text-decoration:none;border:1px solid var(--border2);padding:12px 28px;border-radius:6px;transition:color .2s,border-color .2s,background .2s}
+.yt-view-all a:hover{color:var(--white);border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.03)}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border2);padding:32px 40px;display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px}
+.footer-links{display:flex;gap:20px}
+.footer-links a{color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--white)}
+
+/* ── FRAMER-STYLE SCROLL SLIDES ──────────────────────────────*/
+.slides-outer{
+  position:relative;
+  height:600vh;
+}
+.slides-sticky{
+  position:sticky;
+  top:0;
+  height:100vh;
+  width:100vw;
+  overflow:visible;
+}
+.slides-track{
+  display:flex;
+  width:500%;
+  height:100%;
+  will-change:transform;
+  transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.slide{
+  width:20%;
+  height:100%;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:80px 60px;
+  position:relative;
+  overflow:hidden;
+}
+.slide-1{background:var(--bg)}
+.slide-2{background:#080608}
+.slide-3{background:#080608}
+.slide-4{background:#080608}
+.slide-5{background:#080608}
+.slide-inner{
+  max-width:1100px;
+  width:100%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:center;
+}
+.slide-inner.center{
+  grid-template-columns:1fr;
+  text-align:center;
+  justify-items:center;
+}
+.slide-label{
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.slide-label::before{content:'';display:block;width:20px;height:1px;background:var(--accent)}
+.slide-num{font-family:var(--h);font-size:11px;color:var(--muted2);letter-spacing:0.1em;margin-bottom:8px}
+.slide-title{
+  font-family:var(--h);
+  font-size:clamp(32px,4.5vw,60px);
+  font-weight:800;line-height:1.0;
+  letter-spacing:-0.03em;
+  margin-bottom:20px;color:var(--white);
+}
+.slide-title em{font-style:normal;color:var(--accent)}
+.slide-desc{color:var(--muted);font-size:15px;line-height:1.8;max-width:420px;margin-bottom:32px}
+.slide-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+.slide-tag{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);background:rgba(255,255,255,0.04);border:1px solid var(--border2);padding:5px 12px;border-radius:100px}
+.slide-tag.hot{color:var(--accent2);border-color:var(--border);background:rgba(199,38,5,0.06)}
+.slide-visual{
+  aspect-ratio:4/3;background:var(--bg2);border:1px solid var(--border2);
+  border-radius:16px;overflow:hidden;position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.slide-visual-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,rgba(199,38,5,0.12),transparent 70%);pointer-events:none}
+.slide-mockup{position:absolute;inset:0;background:var(--bg3);display:flex;flex-direction:column;gap:12px;padding:24px}
+.mock-bar{height:8px;border-radius:4px;background:rgba(255,255,255,0.06)}
+.mock-bar.w30{width:30%}.mock-bar.w60{width:60%}.mock-bar.w80{width:80%}.mock-bar.w45{width:45%}
+.mock-bar.accent{background:rgba(199,38,5,0.3)}
+.mock-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px}
+.mock-card{height:60px;border-radius:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06)}
+.slides-dots{position:fixed;right:28px;top:50%;transform:translateY(-50%);display:none;flex-direction:column;gap:10px;z-index:200}
+.slides-dots.active{display:flex}
+.sdot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.18);transition:all .3s;cursor:pointer}
+.sdot.on{background:var(--accent);box-shadow:0 0 10px var(--glow);transform:scale(1.4)}
+.slide-progress{position:fixed;top:64px;left:0;right:0;height:2px;background:rgba(255,255,255,0.05);z-index:150;display:none}
+.slide-progress.active{display:block}
+.slide-progress-bar{height:100%;background:var(--accent);width:0%;box-shadow:0 0 8px var(--glow)}
+
+/* Slide content entrance animation */
+.slide-inner > *{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity 0.6s cubic-bezier(0.16,1,0.3,1),transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.slide.active .slide-inner > *:nth-child(1){opacity:1;transform:translateY(0);transition-delay:0.05s}
+.slide.active .slide-inner > *:nth-child(2){opacity:1;transform:translateY(0);transition-delay:0.15s}
+
+@media(max-width:700px){
+  .slide-inner{grid-template-columns:1fr;gap:32px}
+  .slide{padding:80px 24px 40px}
+  .slides-outer{height:500vh}
+  .slides-dots{right:12px}
+}
+
+/* ── SCROLL-SCRUBBED 3D VIDEO — small box, bottom-left ── */
+#scrubBox{
+  position:absolute;
+  left:1px;
+  bottom:18px;
+  width:300px;
+  height:300px;
+  z-index:4;
+  pointer-events:none;
+  overflow:hidden;
+  opacity:0;
+  mix-blend-mode:screen;
+  transform-origin:left bottom;
+  transition:opacity 0.5s ease,
+             width  1.2s cubic-bezier(0.16,1,0.3,1),
+             height 1.2s cubic-bezier(0.16,1,0.3,1);
+}
+#scrubBox.sv-on{ opacity:1; }
+#scrubBox.sv-small{
+  width:300px;
+  height:300px;
+}
+#scrubBox.sv-big{
+  width:400px;
+  height:400px;
+}
+#scrubVideo{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  mix-blend-mode:screen;
+}
+.slides-track{ position:relative; z-index:3; overflow:hidden; }
+.slides-dots{ z-index:10 !important; }
+.slide-progress{ z-index:10 !important; }
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur2"></div>
+<canvas id="fireCanvas"></canvas>
+
+<!-- PROGRESS BAR -->
+<div class="slide-progress" id="slideProgress"><div class="slide-progress-bar" id="slideProgressBar"></div></div>
+
+<!-- SIDE DOTS -->
+<div class="slides-dots" id="slidesDots">
+  <div class="sdot" data-i="0"></div>
+  <div class="sdot" data-i="1"></div>
+  <div class="sdot" data-i="2"></div>
+  <div class="sdot" data-i="3"></div>
+  <div class="sdot" data-i="4"></div>
+</div>
+
+<nav id="nav">
+  <a href="#" class="logo cx-logo-wrap" id="navLogo"><span class="cx-letter cx-white"><span class="top">C</span><span class="bot">C</span></span><span class="cx-letter cx-white"><span class="top">E</span><span class="bot">E</span></span><span class="cx-letter cx-white"><span class="top">N</span><span class="bot">N</span></span><span class="cx-letter cx-white"><span class="top">E</span><span class="bot">E</span></span><span class="cx-letter cx-white"><span class="top">M</span><span class="bot">M</span></span><span class="cx-letter cx-white"><span class="top">A</span><span class="bot">A</span></span><span class="cx-letter cx-red"><span class="top">-</span><span class="bot">-</span></span><span class="cx-letter cx-red"><span class="top">X</span><span class="bot">X</span></span></a>
+  <div class="nav-r"></div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+
+  <!-- ▼ VIDEO plays here — behind everything in the hero ▼ -->
+  <video
+    id="heroBgVideo"
+    src="assets/video/intro.mp4"
+    autoplay
+    muted
+    playsinline
+    preload="auto"
+  ></video>
+  <!-- soft dark vignette keeps logo legible over any video -->
+  <div class="hero-video-overlay"></div>
+  <!-- ▲ VIDEO LAYER END ▲ -->
+
+  <div class="hero-eyebrow hero-delayed hero-d2" id="heroEyebrow">Free for every creator</div>
+  <h1 class="hero-title cx-logo-wrap hero-delayed hero-d1" id="heroTitle"><span class="cx-letter cx-white"><span class="top">C</span><span class="bot">C</span></span><span class="cx-letter cx-white"><span class="top">E</span><span class="bot">E</span></span><span class="cx-letter cx-white"><span class="top">N</span><span class="bot">N</span></span><span class="cx-letter cx-white"><span class="top">E</span><span class="bot">E</span></span><span class="cx-letter cx-white"><span class="top">M</span><span class="bot">M</span></span><span class="cx-letter cx-white"><span class="top">A</span><span class="bot">A</span></span><span class="cx-letter cx-red"><span class="top">-</span><span class="bot">-</span></span><span class="cx-letter cx-red"><span class="top">X</span><span class="bot">X</span></span></h1>
+  <p class="hero-tagline hero-delayed hero-d3" id="heroTagline">Premium presets, plugins, transitions, grains, fonts, 3D assets — all free. Built for creators who take their craft seriously.</p>
+</div>
+
+<!-- ── FRAMER-STYLE SCROLL SLIDES ── -->
+<div class="slides-outer" id="slidesOuter">
+  <div class="slides-sticky" id="slidesSticky">
+
+    <!-- ── SCROLL-SCRUBBED 3D VIDEO — bottom-left box ── -->
+    <div id="scrubBox">
+      <video id="scrubVideo" src="assets/video/scrub-video.mp4"
+      preload="auto" muted playsinline disablePictureInPicture></video>
+    </div>
+
+    <div class="slides-track" id="slidesTrack">
+
+      <!-- SLIDE 1 — Lightroom Presets -->
+      <div class="slide slide-1">
+        <div class="slide-inner">
+          <div>
+            <div class="slide-num">01 / 05</div>
+            <div class="slide-label" id="sl-label-0">Photo</div>
+            <h2 class="slide-title" id="sl-title-0">Cinematic <em>presets</em><br>for every shot.</h2>
+            <p class="slide-desc" id="sl-desc-0">45 mobile + 60 desktop Lightroom presets. Moody, filmic, editorial — one tap and your photo transforms.</p>
+            <div class="slide-tags">
+              <span class="slide-tag hot">Free</span>
+              <span class="slide-tag">Lightroom Mobile</span>
+              <span class="slide-tag">Lightroom Classic</span>
+              <span class="slide-tag">XMP · DNG</span>
+            </div>
+          </div>
+          <div class="slide-visual">
+            <div class="slide-visual-glow"></div>
+            <div id="sl-visual-0" style="position:relative;z-index:1;width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+              <div class="slide-mockup">
+                <div class="mock-bar w60 accent"></div>
+                <div class="mock-bar w80"></div>
+                <div class="mock-bar w45"></div>
+                <div class="mock-grid">
+                  <div class="mock-card" style="background:rgba(199,38,5,0.15)"></div>
+                  <div class="mock-card" style="background:rgba(255,140,20,0.1)"></div>
+                  <div class="mock-card"></div>
+                  <div class="mock-card"></div>
+                  <div class="mock-card" style="background:rgba(199,38,5,0.08)"></div>
+                  <div class="mock-card"></div>
+                </div>
+                <div class="mock-bar w30"></div>
+                <div class="mock-bar w60"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2 — Video Transitions -->
+      <div class="slide slide-2">
+        <div class="slide-inner">
+          <div class="slide-visual">
+            <div class="slide-visual-glow"></div>
+            <div id="sl-visual-1" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:32px">
+              <div style="width:100%;height:4px;background:linear-gradient(90deg,transparent,var(--accent),transparent);border-radius:2px"></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%">
+                <div class="sl-emoji-box" id="sl-e1-0" style="height:80px;border-radius:10px;background:rgba(199,38,5,0.12);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px">⚡</div>
+              </div>
+              <div style="width:100%;height: 4px;px;background:linear-gradient(90deg,transparent,rgba(199,38,5,0.4),transparent);border-radius:2px"></div>
+            </div>
+          </div>
+          <div>
+            <div class="slide-num">02 / 05</div>
+            <div class="slide-label" id="sl-label-1">Video</div>
+            <h2 class="slide-title" id="sl-title-1"><em>150</em> transitions<br>drag & drop.</h2>
+            <p class="slide-desc" id="sl-desc-1">Whip pans, zooms, glitches, and smooth cuts. Built for Premiere Pro and After Effects. One click, instant energy.</p>
+            <div class="slide-tags">
+              <span class="slide-tag hot">Free</span>
+              <span class="slide-tag">Premiere Pro</span>
+              <span class="slide-tag">After Effects</span>
+              <span class="slide-tag">MOGRT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 — Film Grain + Light Leaks -->
+      <div class="slide slide-3">
+        <div class="slide-inner">
+          <div>
+            <div class="slide-num">03 / 05</div>
+            <div class="slide-label" id="sl-label-2">Overlays</div>
+            <h2 class="slide-title" id="sl-title-2">Analog <em>grain</em><br>& light leaks.</h2>
+            <p class="slide-desc" id="sl-desc-2">120 film grain overlays and light leaks in 4K ProRes. 16mm, 8mm, vintage — the texture that makes digital feel real.</p>
+            <div class="slide-tags">
+              <span class="slide-tag hot">Free</span>
+              <span class="slide-tag">4K ProRes</span>
+              <span class="slide-tag">MOV</span>
+              <span class="slide-tag">Screen blend</span>
+            </div>
+          </div>
+          <div class="slide-visual">
+            <div class="slide-visual-glow"></div>
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,0.015) 2px,rgba(255,255,255,0.015) 4px),radial-gradient(ellipse at 30% 40%,rgba(255,200,80,0.15),transparent 60%),radial-gradient(ellipse at 70% 60%,rgba(199,38,5,0.12),transparent 50%);border-radius:16px"></div>
+            <div id="sl-visual-2" style="position:relative;z-index:1;text-align:center">
+              <div id="sl-emoji-2" style="font-size:64px;filter:drop-shadow(0 0 20px rgba(255,160,40,0.6))">🎞</div>
+              <div style="font-size:12px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:12px">16mm Grain · 4K</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4 — SFX + Fonts + PSDs -->
+      <div class="slide slide-4">
+        <div class="slide-inner">
+          <div class="slide-visual">
+            <div class="slide-visual-glow"></div>
+            <div id="sl-visual-3" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:32px;gap:16px">
+              <div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--white);letter-spacing:-0.03em;line-height:1">VOID<span style="color:var(--accent)">TYPE</span></div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap">
+                <span style="font-size:10px;color:var(--muted);background:rgba(255,255,255,0.04);border:1px solid var(--border2);padding:3px 10px;border-radius:100px">OTF</span>
+                <span style="font-size:10px;color:var(--muted);background:rgba(255,255,255,0.04);border:1px solid var(--border2);padding:3px 10px;border-radius:100px">WOFF2</span>
+                <span style="font-size:10px;color:var(--accent2);background:rgba(199,38,5,0.06);border:1px solid var(--border);padding:3px 10px;border-radius:100px">5 Weights</span>
+              </div>
+              <div style="height:1px;background:var(--border2);width:100%"></div>
+              <div style="display:flex;gap:12px;align-items:center">
+                <div id="sl-emoji-3" style="font-size:24px">🔊</div>
+                <div>
+                  <div style="font-size:13px;color:var(--white);font-weight:500">SFX Bundle</div>
+                  <div style="font-size:11px;color:var(--muted)">200+ cinematic sounds</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="slide-num">04 / 05</div>
+            <div class="slide-label" id="sl-label-3">Design + Audio</div>
+            <h2 class="slide-title" id="sl-title-3">Fonts, PSDs<br>& <em>SFX.</em></h2>
+            <p class="slide-desc" id="sl-desc-3">5 display fonts, 40 PSD social templates, and 200+ cinematic sound effects. Everything your project needs in one place.</p>
+            <div class="slide-tags">
+              <span class="slide-tag hot">Free</span>
+              <span class="slide-tag">OTF · WOFF</span>
+              <span class="slide-tag">PSD</span>
+              <span class="slide-tag">WAV · MP3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5 — Full Bundle CTA -->
+      <div class="slide slide-5">
+        <div class="slide-inner center">
+          <div>
+            <div class="slide-num" style="text-align:center;margin-bottom:16px">05 / 05</div>
+            <div class="slide-label" style="justify-content:center;margin-bottom:24px">Everything</div>
+            <h2 class="slide-title" style="font-size:clamp(40px,6vw,80px)">Get the full<br><em>bundle.</em></h2>
+            <p class="slide-desc" style="margin:0 auto 40px;text-align:center">400+ files. Every pack. One download. Free forever.</p>
+            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+              <a id="sl-bundle-link" href="YOUR_MEGA_LINK" target="_blank" class="btn-main" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:14px;padding:16px 40px">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+                Download Everything
+              </a>
+              <a href="#assets" class="btn-out" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:14px;padding:16px 32px">Browse Assets</a>
+            </div>
+            <div style="display:flex;gap:24px;justify-content:center;margin-top:48px;padding-top:32px;border-top:1px solid var(--border2)">
+              <div style="text-align:center"><div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:700;color:var(--white)">400+</div><div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px">Files</div></div>
+              <div style="text-align:center"><div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:700;color:var(--white)">10</div><div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px">Packs</div></div>
+              <div style="text-align:center"><div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:700;color:var(--accent)">FREE</div><div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px">Always</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker ticker-reveal">
+  <div class="ticker-track">
+    <div class="tick-item">Lightroom Presets<span class="tick-dot"></span></div>
+    <div class="tick-item">Premiere Pro Plugins<span class="tick-dot"></span></div>
+    <div class="tick-item">After Effects Templates<span class="tick-dot"></span></div>
+    <div class="tick-item">Film Grain Overlays<span class="tick-dot"></span></div>
+    <div class="tick-item">Light Leaks<span class="tick-dot"></span></div>
+    <div class="tick-item">Video Transitions<span class="tick-dot"></span></div>
+    <div class="tick-item">Display Fonts<span class="tick-dot"></span></div>
+    <div class="tick-item">PSD Templates<span class="tick-dot"></span></div>
+    <div class="tick-item">3D Assets<span class="tick-dot"></span></div>
+    <div class="tick-item">SFX Bundle<span class="tick-dot"></span></div>
+    <div class="tick-item">LUTs & Color Grades<span class="tick-dot"></span></div>
+    <div class="tick-item">Lightroom Presets<span class="tick-dot"></span></div>
+    <div class="tick-item">Premiere Pro Plugins<span class="tick-dot"></span></div>
+    <div class="tick-item">After Effects Templates<span class="tick-dot"></span></div>
+    <div class="tick-item">Film Grain Overlays<span class="tick-dot"></span></div>
+    <div class="tick-item">Light Leaks<span class="tick-dot"></span></div>
+    <div class="tick-item">Video Transitions<span class="tick-dot"></span></div>
+    <div class="tick-item">Display Fonts<span class="tick-dot"></span></div>
+    <div class="tick-item">PSD Templates<span class="tick-dot"></span></div>
+    <div class="tick-item">3D Assets<span class="tick-dot"></span></div>
+    <div class="tick-item">SFX Bundle<span class="tick-dot"></span></div>
+    <div class="tick-item">LUTs & Color Grades<span class="tick-dot"></span></div>
+  </div>
+</div>
+
+<!-- ASSETS -->
+<div class="main" id="assets">
+
+  <!-- TABS -->
+  <div class="tabs-wrap reveal">
+    <button class="tab-btn active" onclick="switchTab(this,'all')">All<span class="tab-count">10</span></button>
+    <button class="tab-btn" onclick="switchTab(this,'photo')">Photo<span class="tab-count">2</span></button>
+    <button class="tab-btn" onclick="switchTab(this,'video')">Video<span class="tab-count">3</span></button>
+    <button class="tab-btn" onclick="switchTab(this,'ae')">After Effects<span class="tab-count">1</span></button>
+    <button class="tab-btn" onclick="switchTab(this,'design')">Design<span class="tab-count">2</span></button>
+    <button class="tab-btn" onclick="switchTab(this,'3d')">3D<span class="tab-count">1</span></button>
+    <button class="tab-btn" onclick="switchTab(this,'sfx')">SFX<span class="tab-count">1</span></button>
+  </div>
+
+  <!-- ALL ASSETS (shown by default) -->
+  <div class="tab-panel active" id="tab-all">
+    <div class="asset-grid">
+
+      <div class="asset-card reveal" data-cat="photo">
+        <div class="asset-thumb">
+          <div class="asset-thumb-bg"></div>
+          <div class="asset-emoji">🎞</div>
+          <span class="asset-badge badge-free">Free</span>
+        </div>
+        <div class="asset-body">
+          <div class="asset-name">Cinematic Mobile Presets</div>
+          <div class="asset-meta">45 moody film presets · Lightroom Mobile</div>
+          <div class="asset-foot">
+            <div class="asset-format"><span class="fmt">XMP</span><span class="fmt">DNG</span></div>
+            <a href="YOUR_DRIVE_LINK" target="_blank" class="dl-btn">
+              <svg class="dl-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+              Download
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="asset-card reveal reveal-d1" data-cat="photo">
+        <div class="asset-thumb">
+          <div class="asset-thumb-bg"></div>
+          <div class="asset-emoji">🖥</div>
+          <span class="asset-badge badge-free">Free</span>
+        </div>
+        <div class="asset-body">
+          <div class="asset-name">Desktop Preset Collection</div>
+          <div class="asset-meta">60 pro presets · Lightroom Classic</div>
+          <div class="asset-foot">
+            <div class="asset-format"><span class="fmt">XMP</span><span class="fmt">LRTEMPLATE</span></div>
+            <a href="YOUR_DRIVE_LINK" target="_blank" class="dl-btn">
+              <svg class="dl-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+              Download
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="asset-card reveal reveal-d2" data-cat="video">
+        <div class="asset-thumb">
+          <div class="asset-thumb-bg"></div>
+          <div class="asset-emoji">⚡</div>
+          <span class="asset-badge badge-free">Free</span>
+        </div>
+        <div class="asset-body">
+          <div class="asset-name">Whip & Zoom Transitions</div>
+          <div class="asset-meta">150 transitions · Premiere Pro</div>
+          <div class="asset-foot">
+            <div class="asset-format"><span class="fmt">MOGRT</span><span class="fmt">PRPROJ</span></div>
+            <a href="YOUR_DRIVE_LINK" target="_blank" class="dl-btn">
+              <svg class="dl-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+              Download
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="asset-card reveal" data-cat="video">
+        <div class="asset-thumb">
+          <div class="asset-thumb-bg"></div>
+          <div class="asset-emoji">🌫</div>
+          <span class="asset-badge badge-new">New</span>
+        </div>
+        <div class="asset-body">
+          <div class="asset-name">Film Grain + Light Leaks</div>
+          <div class="asset-meta">120 analog overlays · 4K ProRes</div>
+          <div class="asset-foot">
+            <div class="asset-format"><span class="fmt">MOV</span><span class="fmt">4K</span></div>
+            <a href="YOUR_DRIVE_LINK" target="_blank" class="dl-btn">
+              <svg class="dl-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+              Download
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="asset-card reveal reveal-d1" data-cat="video">
+        <div class="asset-thumb">
+          <div class="asset-thumb-bg"></div>
+          <div class="asset-emoji">🎬</div>
+          <span class="asset-badge badge-free">Free</span>
+        </div>
+        <div class="asset-body">
+          <div class="asset-name">AutoCut Pro Plugin</div>
+          <div class="asset-meta">Beat-sync cutting tool · Premiere Pro</div>
+          <div class="asset-foot">
+            <div class="asset-format"><span class="fmt">ZXP</span><span class="fmt">CEP</span></div>
+            <a href="YOUR_DRIVE_LINK" target="_blank" class="dl-btn">
+              <svg class="dl-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+              Download
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="asset-card reveal reveal-d2" data-cat="ae">
+        <div class="asset-thumb">
+          <div class="asset-thumb-bg"></div>
+          <div class="asset-emoji">✨</div>
+          <span class="asset-badge badge-new">New</span>
+        </div>
+        <div class="asset-body">
+          <div class="asset-name">Glitch & Distort FX</div>
+          <div class="asset-meta">80 presets · After Effects</div>
+          <div class="asset-foot">
+            <div class="asset-format"><span class="fmt">AEP</span><span class="fmt">FFXA</span></div>
+            <a href="YOUR_DRIVE_LINK" target="_blank" class="dl-btn">
+              <svg class="dl-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+              Download
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="asset-card reveal" data-cat="design">
+        <div class="asset-thumb">
+          <div class="asset-thumb-bg"></div>
+          <div class="asset-emoji">🔤</div>
+          <span class="asset-badge badge-free">Free</span>
+        </div>
+        <div class="asset-body">
+          <div class="asset-name">Void Display Font Pack</div>
+          <div class="asset-meta">5 exclusive display fonts</div>
+          <div class="asset-foot">
+            <div class="asset-format"><span class="fmt">OTF</span><span class="fmt">WOFF</span></div>
+            <a href="YOUR_DRIVE_LINK" target="_blank" class="dl-btn">
+              <svg class="dl-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+              Download
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="asset-card reveal reveal-d1" data-cat="design">
+        <div class="asset-thumb">
+          <div class="asset-thumb-bg"></div>
+          <div class="asset-emoji">🗂</div>
+          <span class="asset-badge badge-free">Free</span>
+        </div>
+        <div class="asset-body">
+          <div class="asset-name">Social Media PSD Kit</div>
+          <div class="asset-meta">40 templates · Instagram & YouTube</div>
+          <div class="asset-foot">
+            <div class="asset-format"><span class="fmt">PSD</span></div>
+            <a href="YOUR_DRIVE_LINK" target="_blank" class="dl-btn">
+              <svg class="dl-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+              Download
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="asset-card reveal reveal-d2" data-cat="3d">
+        <div class="asset-thumb">
+          <div class="asset-thumb-bg"></div>
+          <div class="asset-emoji">⬡</div>
+          <span class="asset-badge badge-new">New</span>
+        </div>
+        <div class="asset-body">
+          <div class="asset-name">Dark Matter 3D Pack</div>
+          <div class="asset-meta">60 high-res 3D renders</div>
+          <div class="asset-foot">
+            <div class="asset-format"><span class="fmt">PNG</span><span class="fmt">4K</span></div>
+            <a href="YOUR_DRIVE_LINK" target="_blank" class="dl-btn">
+              <svg class="dl-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+              Download
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="asset-card reveal" data-cat="sfx">
+        <div class="asset-thumb">
+          <div class="asset-thumb-bg"></div>
+          <div class="asset-emoji">🔊</div>
+          <span class="asset-badge badge-new">New</span>
+        </div>
+        <div class="asset-body">
+          <div class="asset-name">SFX Bundle</div>
+          <div class="asset-meta">200+ cinematic sound effects · ready to drop in</div>
+          <div class="asset-foot">
+            <div class="asset-format"><span class="fmt">WAV</span><span class="fmt">MP3</span></div>
+            <a href="YOUR_DRIVE_LINK" target="_blank" class="dl-btn">
+              <svg class="dl-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+              Download
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BUNDLE -->
+  <div class="bundle reveal" id="bundle">
+    <div>
+      <div class="bundle-label">★ Full Collection</div>
+      <h2 class="bundle-title">Get everything in<br>one download.</h2>
+      <p class="bundle-desc">All 9 packs — presets, plugins, transitions, grain, fonts, PSDs, and 3D assets — bundled in one organized folder. One click, everything is yours.</p>
+      <div class="bundle-items">
+        <span class="b-tag">45 Mobile Presets</span>
+        <span class="b-tag">60 Desktop Presets</span>
+        <span class="b-tag">150 Transitions</span>
+        <span class="b-tag">120 Grain Overlays</span>
+        <span class="b-tag">80 AE Presets</span>
+        <span class="b-tag">5 Fonts</span>
+        <span class="b-tag">40 PSDs</span>
+        <span class="b-tag">60 3D Assets</span>
+      </div>
+    </div>
+    <div class="bundle-right">
+      <div class="bundle-price" style="color:var(--white)">FREE</div>
+      <div class="bundle-price-label" style="color:var(--white);opacity:0.7">400+ files · Always free</div>
+      <a href="YOUR_BUNDLE_DRIVE_LINK" target="_blank" class="btn-main" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+        Download Bundle
+      </a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="about reveal" id="about">
+    <div>
+      <div class="about-label">— About CENEMA-X</div>
+      <h2 class="about-title">Made by a creator,<br>for creators.</h2>
+      <p class="about-desc">I make all of these assets myself — presets I actually use, transitions I've tested in real edits, and fonts I've built from scratch. Everything here is free because good tools should be accessible to everyone.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── COMMUNITY / TESTIMONIALS ── -->
+<section id="community" style="background:var(--bg);border-top:1px solid var(--border2)">
+  <div class="community-wrap">
+    <div class="community-label">Community</div>
+    <div class="community-title">Leave a Message</div>
+    <p class="community-sub">Share your experience with CENEMA-X — your message will appear below as a testimonial.</p>
+    <div class="cx-form">
+      <div class="cx-form-row">
+        <input id="cxName" class="cx-input" type="text" placeholder="Your name" maxlength="60">
+        <input id="cxEmail" class="cx-input" type="email" placeholder="Your email (optional)" maxlength="100">
+      </div>
+      <textarea id="cxMsg" class="cx-input" placeholder="Write your message or experience..." maxlength="500"></textarea>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+        <span style="font-size:11px;color:var(--muted2)">Your message will be visible to everyone once submitted.</span>
+        <button class="cx-submit" id="cxSubmit" onclick="submitTestimonial()">Send Message</button>
+      </div>
+      <div class="cx-form-msg" id="cxFormMsg"></div>
+    </div>
+    <div class="testi-header">
+      <div class="testi-heading">What People Say</div>
+      <div class="testi-count" id="testiCount">0 messages</div>
+    </div>
+    <div class="testi-grid" id="testiGrid">
+      <div class="testi-empty">No messages yet — be the first to leave one!</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── YOUTUBE SECTION ── -->
+<section id="youtube" style="background:var(--bg2);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2)">
+  <div class="yt-section">
+    <div class="yt-header">
+      <div>
+        <div class="yt-label">Watch on YouTube</div>
+        <div class="yt-title">Latest from<br>CENEMA-X</div>
+      </div>
+      <a class="yt-sub-btn" href="https://www.youtube.com/@Cenema-X?sub_confirmation=1" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        Subscribe
+      </a>
+    </div>
+    <div class="yt-grid">
+      <a class="yt-card" href="https://www.youtube.com/watch?v=CM4W6tB-Otk" target="_blank" rel="noopener">
+        <div class="yt-thumb">
+          <img src="https://img.youtube.com/vi/CM4W6tB-Otk/maxresdefault.jpg" alt="How I started my YouTube channel on a budget" loading="lazy" onerror="this.src='https://img.youtube.com/vi/CM4W6tB-Otk/hqdefault.jpg'">
+          <div class="yt-overlay"><div class="yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        </div>
+        <div class="yt-info">
+          <div class="yt-vtitle">How I started my YouTube channel on a budget | My YouTube Reality | Behind the scenes</div>
+          <div class="yt-vmeta">CENEMA-X · YouTube</div>
+        </div>
+      </a>
+      <a class="yt-card" href="https://www.youtube.com/watch?v=SW6WiW9Wxco" target="_blank" rel="noopener">
+        <div class="yt-thumb">
+          <img src="https://img.youtube.com/vi/SW6WiW9Wxco/maxresdefault.jpg" alt="Better Audio Quality for YouTube Setup | CENEMA-X" loading="lazy" onerror="this.src='https://img.youtube.com/vi/SW6WiW9Wxco/hqdefault.jpg'">
+          <div class="yt-overlay"><div class="yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        </div>
+        <div class="yt-info">
+          <div class="yt-vtitle">Better Audio Quality for YouTube Setup | CENEMA-X</div>
+          <div class="yt-vmeta">CENEMA-X · YouTube</div>
+        </div>
+      </a>
+      <a class="yt-card" href="https://www.youtube.com/watch?v=IPE-v0iz4YU" target="_blank" rel="noopener">
+        <div class="yt-thumb">
+          <img src="https://img.youtube.com/vi/IPE-v0iz4YU/maxresdefault.jpg" alt="How to add Cinematic Glow/Halation in Photoshop | Tutorial" loading="lazy" onerror="this.src='https://img.youtube.com/vi/IPE-v0iz4YU/hqdefault.jpg'">
+          <div class="yt-overlay"><div class="yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        </div>
+        <div class="yt-info">
+          <div class="yt-vtitle">How to add Cinematic Glow/Halation in Photoshop | Tutorial</div>
+          <div class="yt-vmeta">CENEMA-X · YouTube</div>
+        </div>
+      </a>
+      <a class="yt-card" href="https://www.youtube.com/watch?v=_541GCs0SXk" target="_blank" rel="noopener">
+        <div class="yt-thumb">
+          <img src="https://img.youtube.com/vi/_541GCs0SXk/maxresdefault.jpg" alt="CENEMA-X | Watch Now" loading="lazy" onerror="this.src='https://img.youtube.com/vi/_541GCs0SXk/hqdefault.jpg'">
+          <div class="yt-overlay"><div class="yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        </div>
+        <div class="yt-info">
+          <div class="yt-vtitle">CENEMA-X | Watch Now</div>
+          <div class="yt-vmeta">CENEMA-X · YouTube</div>
+        </div>
+      </a>
+      <a class="yt-card" href="https://www.youtube.com/watch?v=gLGi0aXxDVI" target="_blank" rel="noopener">
+        <div class="yt-thumb">
+          <img src="https://img.youtube.com/vi/gLGi0aXxDVI/maxresdefault.jpg" alt="Indoor Color Grading Secrets | Premiere Pro | CENEMA-X" loading="lazy" onerror="this.src='https://img.youtube.com/vi/gLGi0aXxDVI/hqdefault.jpg'">
+          <div class="yt-overlay"><div class="yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        </div>
+        <div class="yt-info">
+          <div class="yt-vtitle">Indoor Color Grading Secrets | Premiere Pro | CENEMA-X</div>
+          <div class="yt-vmeta">CENEMA-X · YouTube</div>
+        </div>
+      </a>
+      <a class="yt-card" href="https://www.youtube.com/watch?v=LeYOHIk3qZI" target="_blank" rel="noopener">
+        <div class="yt-thumb">
+          <img src="https://img.youtube.com/vi/LeYOHIk3qZI/maxresdefault.jpg" alt="YouTube Cinematic Lighting Setup | 4 Simple Steps | Budget Lighting Setup" loading="lazy" onerror="this.src='https://img.youtube.com/vi/LeYOHIk3qZI/hqdefault.jpg'">
+          <div class="yt-overlay"><div class="yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        </div>
+        <div class="yt-info">
+          <div class="yt-vtitle">YouTube Cinematic Lighting Setup | 4 Simple Steps | Budget Lighting Setup</div>
+          <div class="yt-vmeta">CENEMA-X · YouTube</div>
+        </div>
+      </a>
+    </div>
+    <div class="yt-view-all">
+      <a href="https://www.youtube.com/@Cenema-X/videos" target="_blank" rel="noopener">
+        View all videos on YouTube
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="logo cx-logo-wrap" id="footLogo" style="font-size:15px"><span class="cx-letter cx-white"><span class="top">C</span><span class="bot">C</span></span><span class="cx-letter cx-white"><span class="top">E</span><span class="bot">E</span></span><span class="cx-letter cx-white"><span class="top">N</span><span class="bot">N</span></span><span class="cx-letter cx-white"><span class="top">E</span><span class="bot">E</span></span><span class="cx-letter cx-white"><span class="top">M</span><span class="bot">M</span></span><span class="cx-letter cx-white"><span class="top">A</span><span class="bot">A</span></span><span class="cx-letter cx-red"><span class="top">-</span><span class="bot">-</span></span><span class="cx-letter cx-red"><span class="top">X</span><span class="bot">X</span></span></a>
+  <div class="footer-links">
+    <a href="#assets">Assets</a>
+    <a href="#">Instagram</a>
+    <a href="https://www.youtube.com/@Cenema-X" target="_blank" rel="noopener">YouTube</a>
+    <a href="#community">Community</a>
+    <a href="#" onclick="openAdmin();return false;" style="color:var(--accent);opacity:0.7;transition:opacity .2s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Admin</a>
+  </div>
+  <div>© 2026 CENEMA-X — Free forever.</div>
+</footer>
+
+<script>
+// Cursor
+const c=document.getElementById('cur'),c2=document.getElementById('cur2');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  c.style.left=mx+'px';c.style.top=my+'px';
+});
+(function loop(){rx+=(mx-rx)*0.1;ry+=(my-ry)*0.1;c2.style.left=rx+'px';c2.style.top=ry+'px';requestAnimationFrame(loop)})();
+
+// Nav scroll
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('s',scrollY>40));
+
+// Tabs
+function switchTab(btn,cat){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const grid=document.getElementById('tab-all');
+  grid.querySelectorAll('.asset-card').forEach(card=>{
+    card.style.display=(cat==='all'||card.dataset.cat===cat)?'':'none';
+  });
+}
+
+// ── SHAKE + EMBER BURN — all CENEMA-X logos ──────────────────
+function applySweep(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  let busy=false;
+  el.addEventListener('mouseenter',()=>{
+    if(busy)return;
+    busy=true;
+
+    // 1. Shake the whole wrapper
+    el.classList.remove('logo-shake');
+    void el.offsetWidth;
+    el.classList.add('logo-shake');
+    el.addEventListener('animationend',()=>el.classList.remove('logo-shake'),{once:true});
+
+    // 2. Ember burn each letter with stagger
+    el.querySelectorAll('.cx-letter').forEach((span,i)=>{
+      setTimeout(()=>{
+        span.classList.remove('burn');
+        void span.offsetWidth;
+        span.classList.add('burn');
+        span.addEventListener('animationend',()=>span.classList.remove('burn'),{once:true});
+      },i*55);
+    });
+
+    setTimeout(()=>busy=false,8*55+750);
+  });
+}
+['navLogo','heroTitle','footLogo'].forEach(applySweep);
+
+// ── SCROLL ANIMATION ENGINE ───────────────────────────────────
+
+// 1. Assign card-reveal to all asset cards with stagger
+document.querySelectorAll('.asset-card').forEach((card,i)=>{
+  card.classList.add('card-reveal');
+  card.style.transitionDelay=(i%4)*0.08+'s';
+});
+
+// 2. Assign wiggle-reveal to big sections
+document.querySelectorAll('.bundle,.about,.tabs-wrap').forEach(el=>{
+  el.classList.add('wiggle-reveal');
+});
+
+// 3. Master IntersectionObserver — triggers on scroll down AND back up
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('v');
+    } else {
+      // Re-trigger on scroll back — skip hero so it stays visible
+      if(!entry.target.closest('.hero')){
+        entry.target.classList.remove('v');
+      }
+    }
+  });
+},{threshold:0.08,rootMargin:'0px 0px -32px 0px'});
+
+document.querySelectorAll('.reveal,.card-reveal,.wiggle-reveal,.pop-reveal,.ticker-reveal').forEach(el=>io.observe(el));
+
+// ── HERO LOGO — delayed entrance after 9 seconds + ember burn ─
+setTimeout(function(){
+  // 1. Fade/rise in all hero delayed elements
+  document.querySelectorAll('.hero-delayed').forEach(function(el){
+    el.classList.add('hero-show');
+  });
+
+  // 2. Ember burn sweeps across heroTitle letters with stagger
+  var heroLogo = document.getElementById('heroTitle');
+  if(heroLogo){
+    heroLogo.querySelectorAll('.cx-letter').forEach(function(span, i){
+      setTimeout(function(){
+        span.classList.remove('burn');
+        void span.offsetWidth; // force reflow
+        span.classList.add('burn');
+        span.addEventListener('animationend', function(){
+          span.classList.remove('burn');
+        }, { once: true });
+      }, i * 80); // 80ms stagger between each letter
+    });
+  }
+}, 9000);
+
+// ── PARALLAX + RUBBER BAND on scroll ─────────────────────────
+const heroEl    = document.querySelector('.hero');
+const heroTitle = document.getElementById('heroTitle');
+const eyebrow   = document.querySelector('.hero-eyebrow');
+const heroBtns  = document.querySelector('.hero-btns');
+const heroStats = document.querySelector('.hero-stats');
+const nebulaEl  = document.querySelector('.hero::before'); // can't transform pseudo
+const ticker    = document.querySelector('.ticker');
+
+let lastY=0, velY=0, rafId=null;
+
+function onScroll(){
+  const sy=window.scrollY;
+  const vh=window.innerHeight;
+  velY=sy-lastY;
+  lastY=sy;
+
+  if(sy<vh*1.4){
+    // Parallax layers at different rates
+    if(heroTitle) heroTitle.style.transform=`translateY(${sy*0.22}px)`;
+    if(eyebrow)   eyebrow.style.transform  =`translateY(${sy*0.38}px) scale(${Math.max(0.85,1-sy*0.00025)})`;
+    if(heroBtns)  heroBtns.style.transform =`translateY(${sy*0.16}px)`;
+    if(heroStats) heroStats.style.transform=`translateY(${sy*0.10}px)`;
+
+    // Hero fade out
+    if(heroEl) heroEl.style.opacity=Math.max(0,1-sy/(vh*0.65));
+  }
+
+  // Rubber band — ticker squishes slightly based on scroll velocity
+  if(ticker){
+    const squeeze=Math.max(0.97,1-Math.abs(velY)*0.0015);
+    const tilt=Math.max(-1.2,Math.min(1.2,velY*0.04));
+    ticker.style.transform=`scaleY(${squeeze}) rotate(${tilt}deg)`;
+    ticker.style.transformOrigin='center';
+  }
+
+  // Wiggle sections on scroll — subtle rotation based on velocity
+  document.querySelectorAll('.card-reveal.v').forEach((card,i)=>{
+    const wiggle=velY*0.012*(i%2===0?1:-1);
+    const clamped=Math.max(-1.5,Math.min(1.5,wiggle));
+    card.style.transform=`translateY(0) rotateX(0) scale(1) rotate(${clamped}deg)`;
+  });
+}
+
+// Smooth damp — reset rubber band after scroll stops
+let dampTimer;
+window.addEventListener('scroll',()=>{
+  onScroll();
+  clearTimeout(dampTimer);
+  dampTimer=setTimeout(()=>{
+    // Spring back ticker
+    if(ticker){ticker.style.transition='transform 0.5s cubic-bezier(0.34,1.56,0.64,1)';ticker.style.transform='scaleY(1) rotate(0deg)';}
+    // Reset card wiggles
+    document.querySelectorAll('.card-reveal.v').forEach(card=>{
+      card.style.transition='transform 0.4s cubic-bezier(0.34,1.56,0.64,1)';
+      card.style.transform='translateY(0) rotateX(0) scale(1) rotate(0deg)';
+    });
+    setTimeout(()=>{
+      if(ticker) ticker.style.transition='';
+      document.querySelectorAll('.card-reveal.v').forEach(card=>card.style.transition='');
+    },500);
+  },80);
+},{passive:true});
+
+// 3D tilt on card hover
+document.querySelectorAll('.asset-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-0.5;
+    const y=(e.clientY-r.top)/r.height-0.5;
+    card.style.transform=`perspective(700px) rotateY(${x*10}deg) rotateX(${-y*10}deg) translateY(-5px) scale(1.03)`;
+    card.style.boxShadow=`0 16px 40px rgba(0,0,0,0.4), 0 0 20px rgba(199,38,5,${0.1+Math.abs(x)*0.15})`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='';
+    card.style.boxShadow='';
+  });
+});
+
+// ── FRAMER-STYLE SCROLL SLIDES DRIVER ────────────────────────
+(function(){
+  const outer   = document.getElementById('slidesOuter');
+  const track   = document.getElementById('slidesTrack');
+  const dotsWrap= document.getElementById('slidesDots');
+  const dotEls  = document.querySelectorAll('.sdot');
+  const prog    = document.getElementById('slideProgress');
+  const progBar = document.getElementById('slideProgressBar');
+  const slides  = document.querySelectorAll('.slide');
+  const N       = slides.length; // 5
+
+  var sv      = document.getElementById('scrubBox');
+  var svVid   = document.getElementById('scrubVideo');
+  var svReady = false;
+  if(svVid){
+    svVid.addEventListener('loadedmetadata', function(){ svReady = true; });
+    svVid.load();
+  }
+
+  if(!outer||!track) return;
+
+  let activeIdx = -1;
+
+  function update(){
+    const outerTop    = outer.getBoundingClientRect().top;
+    const outerHeight = outer.offsetHeight;
+    const vh          = window.innerHeight;
+
+    // progress 0→1 across the entire sticky zone
+    const scrolled    = -outerTop;
+    const scrollRange = outerHeight - vh;
+    const pct         = Math.max(0, Math.min(1, scrolled / scrollRange));
+
+    // inside sticky zone?
+    const inside = outerTop <= 0 && (outerTop + outerHeight) >= vh;
+    dotsWrap.classList.toggle('active', inside);
+    prog.classList.toggle('active', inside);
+
+    // translate track: each slide is 100/N % of track width = 100vw
+    // offset = pct * (N-1) slides worth
+    const offsetPct = pct * (N - 1) * (100 / N);
+    track.style.transform = `translateX(-${offsetPct}%)`;
+
+    // active slide
+    const idx = Math.min(N-1, Math.round(pct * (N-1)));
+    if(idx !== activeIdx){
+      activeIdx = idx;
+      slides.forEach((s,i) => s.classList.toggle('active', i === idx));
+      dotEls.forEach((d,i) => d.classList.toggle('on', i === idx));
+    }
+
+    // progress bar
+    progBar.style.width = (pct * 100) + '%';
+
+    // ── scrub 3D video to scroll progress ──────────────────
+   if(sv){
+      if(inside){
+        sv.classList.add('sv-on');
+        if(svReady && svVid.duration){
+          var t = pct * svVid.duration;
+          if(Math.abs(svVid.currentTime - t) > 0.025) svVid.currentTime = t;
+        }
+      } else {
+        sv.classList.remove('sv-on');
+        if(outerTop > 0 && svReady) svVid.currentTime = 0;
+      }
+    }
+
+
+    // ── Time-based size transition ────────────────────────────
+    // Timeline (seconds since entering sticky zone):
+    //  0–2s  → BIG
+    //  2–5s  → shrinks
+    //  5–8s  → SMALL
+    //  8–10s → grows big again
+    if(sv && inside){
+      var totalSecs = 20; // total duration of the size cycle in seconds
+      var elapsed   = pct * (outerHeight - vh) / (window.innerHeight * 0.5);
+      // use scroll progress mapped to seconds
+      var secs = pct * totalSecs;
+      if(secs < 0.20){
+        sv.classList.remove('sv-small');
+        sv.classList.add('sv-big');
+      } else if(secs < 17.6){
+        sv.classList.remove('sv-big');
+        sv.classList.add('sv-small');
+      } else {
+        sv.classList.remove('sv-small');
+        sv.classList.add('sv-big');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update);
+  // init — trigger first active slide
+  setTimeout(()=>{ slides[0].classList.add('active'); if(sv) sv.classList.add('sv-big'); update(); }, 100);
+
+  // dot click → scroll to that slide
+  dotEls.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      const outerTop    = outer.getBoundingClientRect().top + window.scrollY;
+      const outerHeight = outer.offsetHeight;
+      const scrollRange = outerHeight - window.innerHeight;
+      const targetY     = outerTop + (i / (N - 1)) * scrollRange;
+      window.scrollTo({top: targetY, behavior: 'smooth'});
+    });
+  });
+})();
+</script>
+<!-- ── ADMIN PANEL ── -->
+<!-- mute toggle button -->
+<button id="muteBtn" onclick="toggleMute()" title="Toggle sound">
+  <!-- speaker-muted SVG icon -->
+  <svg id="muteIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06A8.99 8.99 0 0 0 17.73 19L19 20.27 20.27 19 5.27 4 4.27 3zM12 4 9.91 6.09 12 8.18V4z"/>
+  </svg>
+</button>
+<!-- Admin panel: no visible button. Open with ⌘+Shift+Z (or Ctrl+Shift+Z on Windows) -->
+
+<div id="adminOverlay" onclick="if(event.target===this)closeAdmin()">
+  <div id="adminPanel">
+
+    <!-- LOGIN SCREEN -->
+    <div id="adminLogin">
+      <div class="adm-logo">CENEMA-X <span>Admin</span></div>
+      <p class="adm-sub">Sign in to manage your assets</p>
+      <div class="adm-field"><label>Username</label><input id="admUser" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter')adminLogin()"></div>
+      <div class="adm-field"><label>Password</label><input id="admPass" type="password" autocomplete="new-password" onkeydown="if(event.key==='Enter')adminLogin()"></div>
+      <div id="admErr" class="adm-err"></div>
+      <button class="adm-btn-main" onclick="adminLogin()">Sign In</button>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="adminDash" style="display:none">
+      <div class="adm-header">
+        <div class="adm-logo">CENEMA-X <span>Admin</span></div>
+        <button class="adm-signout" onclick="adminLogout()">Sign Out</button>
+      </div>
+
+      <!-- TAB SWITCHER -->
+      <div class="adm-tabs">
+        <button class="adm-tab active" onclick="admSwitchTab(this,'admCards')">🃏 Assets</button>
+        <button class="adm-tab" onclick="admSwitchTab(this,'admSlides')">🎞 Slides</button>
+        <button class="adm-tab" onclick="admSwitchTab(this,'admMedia')">🎬 Videos</button>
+        <button class="adm-tab" onclick="admSwitchTab(this,'admYoutube')">▶ YouTube</button>
+        <button class="adm-tab adm-notif-tab" onclick="admSwitchTab(this,'admNotifs')">🔔 Messages <span id="admNotifBadge" class="adm-notif-badge" style="display:none">0</span></button>
+      </div>
+
+      <div id="admCards"></div>
+      <div id="admSlides" style="display:none"></div>
+      <div id="admMedia" style="display:none"></div>
+      <div id="admYoutube" style="display:none"></div>
+      <div id="admNotifs" style="display:none"></div>
+
+      <button class="adm-btn-main" style="margin-top:24px" id="admSaveBtn" onclick="adminSave()">💾 Save All Changes</button>
+      <div id="admSaved" class="adm-saved"></div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+/* ══════════════════════════════════════════════════════════════
+   LIQUID GLASS ADMIN PANEL
+══════════════════════════════════════════════════════════════ */
+
+/* mute toggle */
+#muteBtn{
+  position:fixed;bottom:76px;right:24px;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(20,10,8,0.9);
+  border:1px solid rgba(199,38,5,0.3);
+  color:var(--muted);font-size:18px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;z-index:8000;
+  transition:background .2s,color .2s,border-color .2s;
+}
+#muteBtn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+#muteBtn svg{width:20px;height:20px;fill:currentColor}
+
+
+
+/* ── ADMIN GEAR BUTTON — hidden; panel opens with ⌘+Shift+Z ── */
+#adminBtn{ display:none !important; }
+
+/* ══════════════════════════════════════════════════════════════
+   LIQUID GLASS OVERLAY + PANEL
+══════════════════════════════════════════════════════════════ */
+@keyframes glassReveal{
+  from{opacity:0;transform:scale(0.96) translateY(12px)}
+  to  {opacity:1;transform:scale(1)    translateY(0)}
+}
+
+/* full-screen backdrop with cinematic blur */
+#adminOverlay{
+  display:none;
+  position:fixed;inset:0;
+  z-index:9000;
+  align-items:center;
+  justify-content:center;
+  /* layered radial glows for the liquid bg effect */
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(199,38,5,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 65%, rgba(120,20,5,0.12) 0%, transparent 50%),
+    rgba(4,3,2,0.75);
+  backdrop-filter:blur(22px) saturate(1.4);
+  -webkit-backdrop-filter:blur(22px) saturate(1.4);
+}
+#adminOverlay.open{display:flex}
+
+/* the glass panel itself */
+#adminPanel{
+  position:relative;
+  width:min(680px,95vw);
+  max-height:90vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding:40px 40px 36px;
+  border-radius:24px;
+  /* multi-layer glass background */
+  background:
+    linear-gradient(135deg,
+      rgba(255,255,255,0.07) 0%,
+      rgba(255,255,255,0.03) 40%,
+      rgba(199,38,5,0.04)   100%);
+  border:1px solid rgba(255,255,255,0.13);
+  /* top-left highlight edge */
+  box-shadow:
+    inset 0  1px 0   rgba(255,255,255,0.18),
+    inset 1px 0  0   rgba(255,255,255,0.08),
+    0 32px 80px  rgba(0,0,0,0.6),
+    0  8px 24px  rgba(0,0,0,0.4),
+    0  0   0 1px rgba(199,38,5,0.08);
+  backdrop-filter:blur(40px) saturate(1.6) brightness(1.08);
+  -webkit-backdrop-filter:blur(40px) saturate(1.6) brightness(1.08);
+  animation:glassReveal 0.45s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+/* subtle noise texture overlay for glass feel */
+#adminPanel::before{
+  content:'';
+  position:absolute;inset:0;
+  border-radius:24px;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:0;
+  opacity:0.6;
+}
+
+/* scrollbar inside panel */
+#adminPanel::-webkit-scrollbar{width:4px}
+#adminPanel::-webkit-scrollbar-track{background:transparent}
+#adminPanel::-webkit-scrollbar-thumb{background:rgba(199,38,5,0.3);border-radius:2px}
+
+/* all children above noise overlay */
+#adminPanel > *{position:relative;z-index:1}
+
+/* ── HEADER ── */
+.adm-header{
+  display:flex;align-items:center;
+  justify-content:space-between;
+  margin-bottom:28px;
+  padding-bottom:20px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.adm-logo{
+  font-family:var(--h);font-size:22px;font-weight:800;
+  letter-spacing:0.1em;color:var(--white);
+}
+.adm-logo span{
+  color:transparent;
+  background:linear-gradient(90deg,#e03010,#ff6633);
+  -webkit-background-clip:text;
+  background-clip:text;
+}
+.adm-sub{color:rgba(255,255,255,0.45);font-size:13px;margin-top:4px}
+
+/* close / sign-out button */
+.adm-signout{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  color:rgba(255,255,255,0.5);
+  padding:7px 16px;border-radius:8px;
+  font-family:var(--b);font-size:12px;
+  cursor:pointer;
+  transition:all .2s;
+  backdrop-filter:blur(8px);
+}
+.adm-signout:hover{
+  background:rgba(199,38,5,0.2);
+  border-color:rgba(199,38,5,0.4);
+  color:#fff;
+}
+
+/* ── LOGIN FORM ── */
+#adminLogin .adm-field label{
+  display:block;
+  font-size:10px;letter-spacing:0.16em;text-transform:uppercase;
+  color:rgba(255,255,255,0.4);margin-bottom:8px;font-weight:500;
+}
+.adm-input{
+  width:100%;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  color:var(--white);
+  font-family:var(--b);font-size:14px;
+  padding:14px 18px;
+  border-radius:12px;
+  outline:none;
+  transition:border-color .25s,background .25s,box-shadow .25s;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  margin-bottom:16px;
+}
+.adm-input:focus{
+  border-color:rgba(199,38,5,0.6);
+  background:rgba(255,255,255,0.09);
+  box-shadow:0 0 0 3px rgba(199,38,5,0.12),
+             inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.adm-input::placeholder{color:rgba(255,255,255,0.2)}
+
+/* login button */
+.adm-login-btn{
+  width:100%;
+  padding:15px;
+  margin-top:8px;
+  border-radius:12px;
+  border:none;
+  font-family:var(--b);font-size:14px;font-weight:600;
+  letter-spacing:0.05em;
+  cursor:pointer;
+  position:relative;overflow:hidden;
+  /* red gradient with glass sheen */
+  background:linear-gradient(135deg,#C72605 0%,#e03010 50%,#C72605 100%);
+  color:#fff;
+  box-shadow:
+    0 4px 24px rgba(199,38,5,0.45),
+    0 1px 0 rgba(255,255,255,0.15) inset;
+  transition:all .25s;
+}
+.adm-login-btn::before{
+  content:'';
+  position:absolute;top:0;left:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent);
+  transition:left 0.5s ease;
+}
+.adm-login-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 32px rgba(199,38,5,0.55),0 1px 0 rgba(255,255,255,0.2) inset;
+}
+.adm-login-btn:hover::before{left:150%}
+.adm-login-btn:active{transform:translateY(0)}
+
+.adm-err{color:#ff6b6b;font-size:12px;margin-top:8px;min-height:18px;text-align:center}
+
+/* ── DASHBOARD TABS ── */
+.adm-tabs{
+  display:flex;gap:6px;
+  flex-wrap:wrap;
+  margin-bottom:24px;
+  padding:5px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;
+}
+.adm-tab{
+  flex:1;min-width:100px;
+  background:transparent;
+  border:1px solid transparent;
+  color:rgba(255,255,255,0.45);
+  padding:9px 14px;border-radius:8px;
+  font-family:var(--b);font-size:11px;font-weight:500;
+  letter-spacing:0.04em;
+  cursor:pointer;transition:all .2s;white-space:nowrap;
+}
+.adm-tab:hover{
+  color:rgba(255,255,255,0.8);
+  background:rgba(255,255,255,0.06);
+}
+.adm-tab.active{
+  background:rgba(199,38,5,0.18);
+  border-color:rgba(199,38,5,0.35);
+  color:#fff;
+  box-shadow:0 2px 12px rgba(199,38,5,0.2),
+             inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+/* ── FIELD LABELS ── */
+.adm-field{margin-bottom:14px}
+.adm-field label{
+  display:block;font-size:10px;letter-spacing:0.14em;
+  text-transform:uppercase;color:rgba(255,255,255,0.38);
+  margin-bottom:6px;font-weight:500;
+}
+.adm-field input,.adm-field textarea,.adm-field select{
+  width:100%;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.09);
+  color:var(--white);
+  font-family:var(--b);font-size:13px;
+  padding:10px 14px;
+  border-radius:9px;outline:none;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+}
+.adm-field input:focus,.adm-field textarea:focus{
+  border-color:rgba(199,38,5,0.5);
+  background:rgba(255,255,255,0.08);
+  box-shadow:0 0 0 3px rgba(199,38,5,0.1);
+}
+.adm-field input::placeholder,.adm-field textarea::placeholder{color:rgba(255,255,255,0.18)}
+
+/* ── CARD EDITOR ── */
+.adm-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;padding:20px;margin-bottom:14px;
+  transition:border-color .2s;
+}
+.adm-card:hover{border-color:rgba(199,38,5,0.2)}
+.adm-card-title{
+  font-family:var(--h);font-size:13px;font-weight:700;
+  color:rgba(255,255,255,0.8);margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.adm-idx{
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(199,38,5,0.2);
+  border:1px solid rgba(199,38,5,0.3);
+  color:var(--accent2);
+  font-size:10px;font-weight:700;
+  display:inline-flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.adm-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* ── SAVE BUTTON ── */
+.adm-btn-main{
+  background:linear-gradient(135deg,#C72605,#e03010);
+  color:#fff;border:none;
+  padding:13px 28px;
+  font-family:var(--b);font-size:13px;font-weight:600;
+  border-radius:10px;cursor:pointer;
+  box-shadow:0 4px 20px rgba(199,38,5,0.35),
+             inset 0 1px 0 rgba(255,255,255,0.15);
+  transition:all .2s;letter-spacing:0.04em;
+}
+.adm-btn-main:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 28px rgba(199,38,5,0.5);
+}
+.adm-saved{
+  font-size:12px;color:#4ade80;margin-top:10px;min-height:18px;
+  text-align:center;letter-spacing:0.04em;
+}
+
+/* ── NOTIFICATION BADGE ── */
+.adm-notif-badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--accent);color:#fff;
+  font-size:9px;font-weight:700;
+  min-width:16px;height:16px;
+  border-radius:8px;padding:0 4px;
+  margin-left:4px;vertical-align:middle;
+  animation:notifPulse 2s infinite;
+}
+@keyframes notifPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(199,38,5,0.5)}
+  50%{box-shadow:0 0 0 5px rgba(199,38,5,0)}
+}
+.adm-notif-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;padding:16px 20px;margin-bottom:10px;
+  display:flex;align-items:flex-start;gap:14px;
+  transition:border-color .2s;
+}
+.adm-notif-card.unread{
+  border-color:rgba(199,38,5,0.3);
+  background:rgba(199,38,5,0.05);
+}
+.adm-notif-card:hover{border-color:rgba(199,38,5,0.25)}
+.adm-notif-avatar{
+  width:34px;height:34px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),#ff7733);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--h);font-size:13px;font-weight:800;color:#fff;
+  flex-shrink:0;
+}
+.adm-notif-name{font-family:var(--h);font-size:13px;font-weight:700;color:var(--white)}
+.adm-notif-time{font-size:10px;color:rgba(255,255,255,0.3);margin-left:8px}
+.adm-notif-msg{font-size:12px;color:rgba(255,255,255,0.55);margin-top:5px;line-height:1.6}
+.adm-notif-unread-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--accent);flex-shrink:0;margin-top:6px;
+  box-shadow:0 0 6px rgba(199,38,5,0.6);
+}
+.adm-clear-btn{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  color:rgba(255,255,255,0.35);padding:6px 14px;border-radius:7px;
+  font-family:var(--b);font-size:11px;cursor:pointer;
+  transition:all .2s;
+}
+.adm-clear-btn:hover{background:rgba(199,38,5,0.15);border-color:rgba(199,38,5,0.3);color:#fff}
+
+/* ── YT CARD EDITOR ── */
+.yt-adm-card{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;padding:18px 20px;margin-bottom:12px;
+}
+.yt-adm-thumb{
+  width:100%;height:90px;object-fit:cover;border-radius:8px;
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+  display:block;margin-top:8px;
+}
+
+/* ── SECTION HEADING inside dash ── */
+.adm-section-title{
+  font-family:var(--h);font-size:13px;font-weight:700;
+  color:rgba(255,255,255,0.6);
+  letter-spacing:0.1em;text-transform:uppercase;
+  margin:20px 0 12px;
+  padding-bottom:8px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.adm-section-label{
+  font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);margin-bottom:10px;
+}
+.adm-tabs-inner{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+
+/* ── preview image ── */
+.adm-preview{
+  width:100%;height:80px;object-fit:cover;
+  border-radius:8px;margin-top:6px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.03);display:none;
+}
+.adm-preview.show{display:block}
+</style>
+
+<script>
+// ── ADMIN PANEL ──────────────────────────────────────────────
+// Credentials stored as SHA-256 hashes, split + reassembled at runtime.
+// Plain-text credentials are never present anywhere in source.
+// Open the panel with: ⌘+Shift+Z (or Ctrl+Shift+Z on Windows)
+
+// Hash segments — each alone is meaningless; reassembled only at auth time.
+const _UH = ['8c6976e5','b5410415','bde908bd','4dee15df',
+              'b167a9c8','73fc4bb8','a81f6f2a','b448a918'];
+const _PH = ['816e3620','f5acc976','2d440391','e6703bff',
+              'e24d0448','c7ec478f','08c9db51','c4795861'];
+function _rh(segs){ return segs.join(''); }
+
+// ── RATE LIMITER ──────────────────────────────────────────────
+// Exponential backoff: 3 free attempts, then 5s → 15s → 45s → lockout.
+const _RL = {
+  attempts: 0,
+  lockedUntil: 0,
+  maxAttempts: 6,
+  backoffs: [0, 0, 0, 5000, 15000, 45000],   // ms delay per attempt index
+  check() {
+    if (Date.now() < this.lockedUntil) {
+      const secs = Math.ceil((this.lockedUntil - Date.now()) / 1000);
+      return { blocked: true, msg: `Too many attempts. Try again in ${secs}s.` };
+    }
+    return { blocked: false };
+  },
+  record(success) {
+    if (success) { this.attempts = 0; this.lockedUntil = 0; return; }
+    this.attempts++;
+    if (this.attempts >= this.maxAttempts) {
+      this.lockedUntil = Date.now() + 120000; // 2-minute hard lockout
+    } else {
+      const delay = this.backoffs[Math.min(this.attempts, this.backoffs.length - 1)];
+      if (delay) this.lockedUntil = Date.now() + delay;
+    }
+  }
+};
+
+// ── SESSION TOKEN ─────────────────────────────────────────────
+// Instead of sessionStorage.setItem('cx_admin','1'), we store a
+// short-lived random token + expiry so the session self-expires.
+const SESSION_TTL = 2 * 60 * 60 * 1000; // 2 hours
+const SESSION_KEY = 'cx_adm_tok';
+function _makeToken(){
+  const arr = new Uint8Array(24);
+  crypto.getRandomValues(arr);
+  return Array.from(arr).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+function _setSession(){
+  const tok = _makeToken();
+  sessionStorage.setItem(SESSION_KEY, JSON.stringify({ tok, exp: Date.now() + SESSION_TTL }));
+}
+function _checkSession(){
+  try {
+    const raw = sessionStorage.getItem(SESSION_KEY);
+    if (!raw) return false;
+    const { tok, exp } = JSON.parse(raw);
+    if (!tok || Date.now() > exp) { sessionStorage.removeItem(SESSION_KEY); return false; }
+    return true;
+  } catch { return false; }
+}
+function _clearSession(){ sessionStorage.removeItem(SESSION_KEY); }
+
+// ── CRYPTO HELPERS ────────────────────────────────────────────
+async function sha256(str){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+// Constant-time string comparison (prevents timing attacks)
+function _safeEq(a, b){
+  if (a.length !== b.length) {
+    // still iterate to avoid length-based timing leak
+    let d = 0; for (let i = 0; i < Math.max(a.length, b.length); i++) d |= (a.charCodeAt(i)||0) ^ (b.charCodeAt(i)||0);
+    return false;
+  }
+  let diff = 0;
+  for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return diff === 0;
+}
+
+// ── SECRET KEYBOARD SHORTCUT ──────────────────────────────────
+// No visible gear button. Panel opens with ⌘+Shift+Z (Cmd+Shift+Z).
+document.addEventListener('keydown', function(e){
+  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'Z') {
+    e.preventDefault();
+    openAdmin();
+  }
+});
+
+// Asset data — editable via admin
+const ASSET_DEFAULTS = [
+  {id:'a0', name:'Cinematic Mobile Presets',   meta:'45 moody film presets · Lightroom Mobile', emoji:'🎞', img:'', link:'YOUR_MEGA_LINK'},
+  {id:'a1', name:'Desktop Preset Collection',  meta:'60 pro presets · Lightroom Classic',        emoji:'🖥', img:'', link:'YOUR_MEGA_LINK'},
+  {id:'a2', name:'Whip & Zoom Transitions',    meta:'150 transitions · Premiere Pro',            emoji:'⚡', img:'', link:'YOUR_MEGA_LINK'},
+  {id:'a3', name:'Film Grain + Light Leaks',   meta:'120 analog overlays · 4K ProRes',           emoji:'🌫', img:'', link:'YOUR_MEGA_LINK'},
+  {id:'a4', name:'AutoCut Pro Plugin',         meta:'Beat-sync cutting tool · Premiere Pro',     emoji:'🎬', img:'', link:'YOUR_MEGA_LINK'},
+  {id:'a5', name:'Glitch & Distort FX',        meta:'80 presets · After Effects',                emoji:'✨', img:'', link:'YOUR_MEGA_LINK'},
+  {id:'a6', name:'Void Display Font Pack',     meta:'5 exclusive display fonts',                 emoji:'🔤', img:'', link:'YOUR_MEGA_LINK'},
+  {id:'a7', name:'Social Media PSD Kit',       meta:'40 templates · Instagram & YouTube',        emoji:'🗂', img:'', link:'YOUR_MEGA_LINK'},
+  {id:'a8', name:'Dark Matter 3D Pack',        meta:'60 high-res 3D renders',                    emoji:'⬡', img:'', link:'YOUR_MEGA_LINK'},
+  {id:'a9', name:'SFX Bundle',                 meta:'200+ cinematic sound effects',              emoji:'🔊', img:'', link:'YOUR_MEGA_LINK'},
+];
+
+const SLIDE_DEFAULTS = [
+  {id:'s0', label:'Photo',         title:'Cinematic presets for every shot.',      desc:'45 mobile + 60 desktop Lightroom presets. Moody, filmic, editorial.', emoji:'🎞', img:''},
+  {id:'s1', label:'Video',         title:'150 transitions drag & drop.',           desc:'Whip pans, zooms, glitches, and smooth cuts. Built for Premiere Pro.', img:''},
+  {id:'s2', label:'Overlays',      title:'Analog grain & light leaks.',            desc:'120 film grain overlays and light leaks in 4K ProRes.', emoji:'🎞', img:''},
+  {id:'s3', label:'Design + Audio',title:'Fonts, PSDs & SFX.',                    desc:'5 display fonts, 40 PSD social templates, and 200+ cinematic sound effects.', emoji:'🔊', img:''},
+  {id:'s4', label:'Bundle',        title:'Get the full bundle.',                   desc:'400+ files. Every pack. One download. Free forever.', bundleLink:'YOUR_MEGA_LINK'},
+];
+
+function loadSlides(){
+  try{ return JSON.parse(localStorage.getItem('cx_slides')) || SLIDE_DEFAULTS; }
+  catch{ return SLIDE_DEFAULTS; }
+}
+function saveSlides(data){ localStorage.setItem('cx_slides', JSON.stringify(data)); }
+
+function admSwitchTab(btn, panelId){
+  document.querySelectorAll('.adm-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  ['admCards','admSlides','admMedia','admYoutube','admNotifs'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el) el.style.display = id===panelId?'':'none';
+  });
+  var saveBtn = document.getElementById('admSaveBtn');
+  if(saveBtn) saveBtn.style.display = panelId==='admNotifs'?'none':'';
+  if(panelId==='admNotifs') markNotifsRead();
+}
+
+function renderAdmSlides(){
+  const data = loadSlides();
+  const wrap = document.getElementById('admSlides');
+  wrap.innerHTML='<p class="adm-sub" style="margin-bottom:20px">Edit each slide individually — label, title, description, and image.</p>';
+  data.forEach((d,i)=>{
+    const div=document.createElement('div');
+    div.className='adm-card';
+    let extraFields = '';
+    if(i===4){
+      extraFields=`<div class="adm-field"><label>Bundle Download Link (Mega.nz)</label><input id="sl_bundle" value="${escHtml(d.bundleLink||'YOUR_MEGA_LINK')}" placeholder="https://mega.nz/folder/..."></div>`;
+    } else {
+      const imgVal = escHtml(d.img||'');
+      const showClass = d.img ? ' show' : '';
+      extraFields=`
+        <div class="adm-field">
+          <label>Slide Image URL</label>
+          <input id="sl_img_${i}" value="${imgVal}" placeholder="https://... paste a direct image link" oninput="slPreview(${i})">
+        </div>
+        <img id="sl_prev_${i}" class="adm-preview${showClass}" src="${imgVal}" alt="preview">`;
+    }
+    div.innerHTML=`
+      <div class="adm-card-title"><span class="adm-idx">${i+1}</span>Slide ${i+1} — ${d.label}</div>
+      <div class="adm-row">
+        <div class="adm-field"><label>Category Label</label><input id="sl_label_${i}" value="${escHtml(d.label)}"></div>
+        <div class="adm-field"><label>Title</label><input id="sl_title_${i}" value="${escHtml(d.title)}"></div>
+      </div>
+      <div class="adm-field"><label>Description</label><textarea id="sl_desc_${i}">${escHtml(d.desc)}</textarea></div>
+      ${extraFields}
+    `;
+    wrap.appendChild(div);
+  });
+}
+function slPreview(i){
+  const val=document.getElementById(`sl_img_${i}`)?.value.trim();
+  const prev=document.getElementById(`sl_prev_${i}`);
+  if(prev){ if(val){prev.src=val;prev.classList.add('show');}else{prev.classList.remove('show');} }
+}
+
+function applySlides(){
+  const data=loadSlides();
+  const imgStyle='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:12px';
+  data.forEach((d,i)=>{
+    const labelEl=document.getElementById(`sl-label-${i}`);
+    const titleEl=document.getElementById(`sl-title-${i}`);
+    const descEl =document.getElementById(`sl-desc-${i}`);
+    if(labelEl) labelEl.textContent=d.label||labelEl.textContent;
+    if(titleEl) titleEl.innerHTML=d.title||titleEl.innerHTML;
+    if(descEl)  descEl.textContent=d.desc||descEl.textContent;
+    if(i===0 && d.img){
+      const v=document.getElementById('sl-visual-0');
+      if(v) v.innerHTML=`<img src="${d.img}" style="${imgStyle}">`;
+    }
+    if(i===1){
+      const v=document.getElementById('sl-visual-1');
+      if(v && d.img){
+        v.style.cssText='position:absolute;inset:0';
+        v.innerHTML=`<img src="${d.img}" style="${imgStyle}">`;
+      }
+    }
+    if(i===2){
+      const wrap=document.getElementById('sl-visual-2');
+      if(wrap && d.img){
+        wrap.style.cssText='position:absolute;inset:0;z-index:1';
+        wrap.innerHTML=`<img src="${d.img}" style="${imgStyle}">`;
+      }
+    }
+    if(i===3){
+      const wrap=document.getElementById('sl-visual-3');
+      if(wrap && d.img){
+        wrap.style.cssText='position:absolute;inset:0';
+        wrap.innerHTML=`<img src="${d.img}" style="${imgStyle}">`;
+      }
+    }
+    if(i===4){
+      const bl=document.getElementById('sl-bundle-link');
+      if(bl && d.bundleLink) bl.href=d.bundleLink;
+    }
+  });
+}
+function loadAssets(){
+  try{ return JSON.parse(localStorage.getItem('cx_assets')) || ASSET_DEFAULTS; }
+  catch{ return ASSET_DEFAULTS; }
+}
+
+function saveAssets(data){
+  localStorage.setItem('cx_assets', JSON.stringify(data));
+}
+
+// Apply saved data to live cards on page load
+function applyAssets(){
+  const data = loadAssets();
+  const cards = document.querySelectorAll('.asset-card');
+  cards.forEach((card, i)=>{
+    if(!data[i]) return;
+    const d = data[i];
+    // name
+    const nameEl = card.querySelector('.asset-name');
+    if(nameEl && d.name) nameEl.textContent = d.name;
+    // meta
+    const metaEl = card.querySelector('.asset-meta');
+    if(metaEl && d.meta) metaEl.textContent = d.meta;
+    // image or emoji
+    const thumbEl = card.querySelector('.asset-thumb');
+    const emojiEl = card.querySelector('.asset-emoji');
+    if(thumbEl){
+      // Remove old img if any
+      const oldImg = thumbEl.querySelector('img.adm-live-img');
+      if(oldImg) oldImg.remove();
+      if(d.img){
+        const img = document.createElement('img');
+        img.src = d.img; img.className='adm-live-img';
+        img.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:0;z-index:1';
+        thumbEl.appendChild(img);
+        if(emojiEl) emojiEl.style.display='none';
+      } else {
+        if(emojiEl){ emojiEl.textContent = d.emoji || emojiEl.textContent; emojiEl.style.display=''; }
+      }
+    }
+    // download link
+    const dlBtn = card.querySelector('.dl-btn');
+    if(dlBtn && d.link) dlBtn.href = d.link;
+  });
+}
+
+function openAdmin(){
+  document.getElementById('adminOverlay').classList.add('open');
+  if(_checkSession()){ showDash(); } else { showLogin(); }
+}
+
+function closeAdmin(){
+  document.getElementById('adminOverlay').classList.remove('open');
+}
+
+function showLogin(){
+  document.getElementById('adminLogin').style.display='';
+  document.getElementById('adminDash').style.display='none';
+  document.getElementById('admErr').textContent='';
+  // Clear fields on every show
+  document.getElementById('admUser').value='';
+  document.getElementById('admPass').value='';
+}
+
+async function adminLogin(){
+  // Rate-limit check first
+  const rl = _RL.check();
+  if(rl.blocked){
+    document.getElementById('admErr').textContent = rl.msg;
+    return;
+  }
+
+  const errEl = document.getElementById('admErr');
+  const btn   = document.querySelector('#adminLogin .adm-btn-main');
+  btn.disabled = true;
+  errEl.textContent = '';
+
+  const u = document.getElementById('admUser').value.trim();
+  const p = document.getElementById('admPass').value;
+
+  // Compute both hashes in parallel; always await both (no short-circuit)
+  const [uh, ph] = await Promise.all([sha256(u), sha256(p)]);
+
+  // Constant-time compare against reassembled hash segments
+  const userOk = _safeEq(uh, _rh(_UH));
+  const passOk = _safeEq(ph, _rh(_PH));
+
+  // Artificial minimum delay (250ms) to further blunt timing attacks
+  await new Promise(r => setTimeout(r, 250));
+
+  btn.disabled = false;
+
+  if(userOk && passOk){
+    _RL.record(true);
+    _setSession();
+    showDash();
+  } else {
+    _RL.record(false);
+    const rl2 = _RL.check();
+    if(rl2.blocked){
+      errEl.textContent = rl2.msg;
+    } else {
+      const remaining = _RL.maxAttempts - _RL.attempts;
+      errEl.textContent = remaining > 0
+        ? `Incorrect credentials. ${remaining} attempt${remaining===1?'':'s'} remaining.`
+        : 'Too many failed attempts. Please wait.';
+    }
+    // Clear password field on failure
+    document.getElementById('admPass').value='';
+  }
+}
+
+function adminLogout(){
+  _clearSession();
+  showLogin();
+}
+
+function showDash(){
+  document.getElementById('adminLogin').style.display='none';
+  document.getElementById('adminDash').style.display='';
+  document.getElementById('admSaved').textContent='';
+  renderAdmCards();
+  renderAdmSlides();
+  renderAdmMedia();
+  renderAdmYoutube();
+  renderAdmNotifs();
+  updateNotifBadge();
+}
+
+function renderAdmCards(){
+  const data = loadAssets();
+  const wrap = document.getElementById('admCards');
+  wrap.innerHTML = '';
+  data.forEach((d, i)=>{
+    const div = document.createElement('div');
+    div.className='adm-card';
+    div.innerHTML=`
+      <div class="adm-card-title"><span class="adm-idx">${i+1}</span>${d.name}</div>
+      <div class="adm-row">
+        <div class="adm-field"><label>Asset Name</label><input id="adm_name_${i}" value="${escHtml(d.name)}"></div>
+        <div class="adm-field"><label>Description</label><input id="adm_meta_${i}" value="${escHtml(d.meta)}"></div>
+      </div>
+      <div class="adm-field"><label>Download Link (Mega.nz URL)</label><input id="adm_link_${i}" value="${escHtml(d.link)}" placeholder="https://mega.nz/folder/..."></div>
+      <div class="adm-field">
+        <label>Image URL (paste direct image link, or leave empty for emoji)</label>
+        <input id="adm_img_${i}" value="${escHtml(d.img)}" placeholder="https://... or leave empty to use emoji" oninput="previewImg(${i})">
+        <img id="adm_prev_${i}" class="adm-preview${d.img?' show':''}" src="${escHtml(d.img)}" alt="preview">
+      </div>
+      <div class="adm-field"><label>Emoji (used if no image)</label><input id="adm_emoji_${i}" value="${d.emoji}" style="width:80px;font-size:20px"></div>
+    `;
+    wrap.appendChild(div);
+  });
+}
+
+function previewImg(i){
+  const val = document.getElementById(`adm_img_${i}`).value.trim();
+  const prev = document.getElementById(`adm_prev_${i}`);
+  if(val){ prev.src=val; prev.classList.add('show'); }
+  else { prev.classList.remove('show'); }
+}
+
+function adminSave(){
+  // Save asset cards
+  const data = loadAssets();
+  data.forEach((d, i)=>{
+    d.name  = document.getElementById(`adm_name_${i}`)?.value.trim()  || d.name;
+    d.meta  = document.getElementById(`adm_meta_${i}`)?.value.trim()  || d.meta;
+    d.link  = document.getElementById(`adm_link_${i}`)?.value.trim()  || d.link;
+    d.img   = document.getElementById(`adm_img_${i}`)?.value.trim()   || '';
+    d.emoji = document.getElementById(`adm_emoji_${i}`)?.value.trim() || d.emoji;
+  });
+  saveAssets(data);
+  applyAssets();
+
+  // Save slide sections
+  const sdata = loadSlides();
+  sdata.forEach((d,i)=>{
+    d.label = document.getElementById(`sl_label_${i}`)?.value.trim() || d.label;
+    d.title = document.getElementById(`sl_title_${i}`)?.value.trim() || d.title;
+    d.desc  = document.getElementById(`sl_desc_${i}`)?.value.trim()  || d.desc;
+    if(i===4){
+      d.bundleLink = document.getElementById('sl_bundle')?.value.trim() || d.bundleLink;
+    } else {
+      d.img = document.getElementById(`sl_img_${i}`)?.value.trim() || '';
+    }
+  });
+  saveSlides(sdata);
+  applySlides();
+
+  // Save media (hero video + scrub video)
+  const mdata = loadMedia();
+  const heroSrc = document.getElementById('adm_hero_src')?.value.trim();
+  const scrubSrc = document.getElementById('adm_scrub_src')?.value.trim();
+  if(heroSrc) mdata.heroSrc = heroSrc;
+  if(scrubSrc) mdata.scrubSrc = scrubSrc;
+  saveMedia(mdata);
+  applyMedia();
+
+  // Save YouTube links
+  const ytdata = loadYoutube();
+  ytdata.forEach((y,i)=>{
+    y.url   = document.getElementById(`yt_url_${i}`)?.value.trim()   || y.url;
+    y.title = document.getElementById(`yt_title_${i}`)?.value.trim() || y.title;
+  });
+  saveYoutube(ytdata);
+  applyYoutube();
+
+  const s = document.getElementById('admSaved');
+  s.textContent = '✅ Saved! Changes are live.';
+  setTimeout(()=>s.textContent='', 3000);
+}
+
+// ── MEDIA (Videos) ────────────────────────────────────────────
+const MEDIA_DEFAULTS = {
+  heroSrc: 'assets/video/intro.mp4',
+  scrubSrc: 'assets/video/scrub-video.mp4'
+};
+function loadMedia(){ try{ return Object.assign({},MEDIA_DEFAULTS,JSON.parse(localStorage.getItem('cx_media'))||{}); }catch{ return Object.assign({},MEDIA_DEFAULTS); } }
+function saveMedia(d){ localStorage.setItem('cx_media', JSON.stringify(d)); }
+
+function applyMedia(){
+  const d = loadMedia();
+  const hv = document.getElementById('heroBgVideo');
+  const sv = document.getElementById('scrubVideo');
+  if(hv && d.heroSrc){ hv.src = d.heroSrc; hv.load(); hv.play().catch(()=>{}); }
+  if(sv && d.scrubSrc){ sv.src = d.scrubSrc; sv.load(); }
+}
+
+function renderAdmMedia(){
+  const d = loadMedia();
+  const wrap = document.getElementById('admMedia');
+  wrap.innerHTML = `
+    <p class="adm-sub" style="margin-bottom:20px">Change the hero background video and the scroll-scrub 3D video. Paste a direct .mp4 URL or a relative path.</p>
+    <div class="adm-card">
+      <div class="adm-card-title"><span class="adm-idx">🎥</span>Hero Background Video</div>
+      <div class="adm-field">
+        <label>Video Source (URL or relative path)</label>
+        <input id="adm_hero_src" value="${escHtml(d.heroSrc)}" placeholder="assets/video/intro.mp4 or https://...">
+      </div>
+      <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:-6px">This plays full-screen behind the CENEMA-X logo in the hero section.</p>
+    </div>
+    <div class="adm-card">
+      <div class="adm-card-title"><span class="adm-idx">📽</span>Scroll-Scrub 3D Video</div>
+      <div class="adm-field">
+        <label>Video Source (URL or relative path)</label>
+        <input id="adm_scrub_src" value="${escHtml(d.scrubSrc)}" placeholder="assets/video/scrub-video.mp4 or https://...">
+      </div>
+      <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:-6px">This video scrubs forward as you scroll through the slide sections.</p>
+    </div>
+  `;
+}
+
+// ── YOUTUBE LINKS ─────────────────────────────────────────────
+const YT_DEFAULTS = [
+  {url:'https://www.youtube.com/watch?v=CM4W6tB-Otk', title:'How I started my YouTube channel on a budget | My YouTube Reality'},
+  {url:'https://www.youtube.com/watch?v=SW6WiW9Wxco', title:'Better Audio Quality for YouTube Setup | CENEMA-X'},
+  {url:'https://www.youtube.com/watch?v=IPE-v0iz4YU', title:'How to add Cinematic Glow/Halation in Photoshop | Tutorial'},
+  {url:'https://www.youtube.com/watch?v=_541GCs0SXk', title:'CENEMA-X | Watch Now'},
+  {url:'https://www.youtube.com/watch?v=gLGi0aXxDVI', title:'Indoor Color Grading Secrets | Premiere Pro | CENEMA-X'},
+  {url:'https://www.youtube.com/watch?v=LeYOHIk3qZI', title:'YouTube Cinematic Lighting Setup | 4 Simple Steps | Budget Lighting Setup'},
+];
+function loadYoutube(){ try{ return JSON.parse(localStorage.getItem('cx_youtube')) || YT_DEFAULTS.map(y=>Object.assign({},y)); }catch{ return YT_DEFAULTS.map(y=>Object.assign({},y)); } }
+function saveYoutube(d){ localStorage.setItem('cx_youtube', JSON.stringify(d)); }
+
+function ytIdFromUrl(url){
+  try{
+    const m = url.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+    return m ? m[1] : '';
+  }catch{ return ''; }
+}
+
+function applyYoutube(){
+  const data = loadYoutube();
+  const cards = document.querySelectorAll('.yt-card');
+  cards.forEach((card,i)=>{
+    if(!data[i]) return;
+    const y = data[i];
+    card.href = y.url;
+    const vid = ytIdFromUrl(y.url);
+    const img = card.querySelector('.yt-thumb img');
+    if(img && vid){
+      img.src = `https://img.youtube.com/vi/${vid}/maxresdefault.jpg`;
+      img.onerror = function(){ this.src = `https://img.youtube.com/vi/${vid}/hqdefault.jpg`; };
+    }
+    const titleEl = card.querySelector('.yt-vtitle');
+    if(titleEl && y.title) titleEl.textContent = y.title;
+  });
+}
+
+function renderAdmYoutube(){
+  const data = loadYoutube();
+  const wrap = document.getElementById('admYoutube');
+  wrap.innerHTML = '<p class="adm-sub" style="margin-bottom:20px">Update the 6 YouTube video cards. Paste the full YouTube watch URL and optionally override the title.</p>';
+  data.forEach((y,i)=>{
+    const vid = ytIdFromUrl(y.url);
+    const thumb = vid ? `https://img.youtube.com/vi/${vid}/mqdefault.jpg` : '';
+    const div = document.createElement('div');
+    div.className = 'yt-adm-card';
+    div.innerHTML = `
+      <div class="adm-card-title" style="margin-bottom:12px"><span class="adm-idx">${i+1}</span>Video ${i+1}</div>
+      ${thumb ? `<img class="yt-adm-thumb" id="yt_prev_${i}" src="${escHtml(thumb)}" alt="thumbnail">` : `<div id="yt_prev_${i}" class="yt-adm-thumb" style="display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.2);font-size:11px">No video ID detected</div>`}
+      <div class="adm-field" style="margin-top:12px">
+        <label>YouTube URL</label>
+        <input id="yt_url_${i}" value="${escHtml(y.url)}" placeholder="https://www.youtube.com/watch?v=..." oninput="ytPreview(${i})">
+      </div>
+      <div class="adm-field">
+        <label>Title (optional override)</label>
+        <input id="yt_title_${i}" value="${escHtml(y.title)}" placeholder="Leave blank to keep original">
+      </div>
+    `;
+    wrap.appendChild(div);
+  });
+}
+
+function ytPreview(i){
+  const url = document.getElementById(`yt_url_${i}`)?.value.trim();
+  const vid = ytIdFromUrl(url);
+  const prev = document.getElementById(`yt_prev_${i}`);
+  if(prev && vid){
+    prev.tagName === 'IMG'
+      ? (prev.src = `https://img.youtube.com/vi/${vid}/mqdefault.jpg`)
+      : (prev.outerHTML = `<img class="yt-adm-thumb" id="yt_prev_${i}" src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" alt="thumbnail">`);
+  }
+}
+
+// ── NOTIFICATIONS (Community Messages) ───────────────────────
+var NOTIF_SEEN_KEY = 'cx_notif_seen_ts';
+
+function getUnseenCount(){
+  var arr = [];
+  try{ arr = JSON.parse(localStorage.getItem('cx_testimonials'))||[]; }catch{}
+  var seenTs = parseInt(localStorage.getItem(NOTIF_SEEN_KEY)||'0',10);
+  return arr.filter(function(t){ return t.ts > seenTs; }).length;
+}
+
+function updateNotifBadge(){
+  var count = getUnseenCount();
+  var badge = document.getElementById('admNotifBadge');
+  if(!badge) return;
+  if(count > 0){
+    badge.textContent = count > 99 ? '99+' : count;
+    badge.style.display = '';
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+function markNotifsRead(){
+  localStorage.setItem(NOTIF_SEEN_KEY, Date.now().toString());
+  updateNotifBadge();
+}
+
+function renderAdmNotifs(){
+  var wrap = document.getElementById('admNotifs');
+  if(!wrap) return;
+  var arr = [];
+  try{ arr = JSON.parse(localStorage.getItem('cx_testimonials'))||[]; }catch{}
+  var seenTs = parseInt(localStorage.getItem(NOTIF_SEEN_KEY)||'0',10);
+
+  function initials(name){ return name.trim().split(' ').map(function(w){return w[0]||'';}).join('').toUpperCase().slice(0,2)||'?'; }
+  function timeAgo(ts){
+    var d=Math.floor((Date.now()-ts)/1000);
+    if(d<60) return 'just now';
+    if(d<3600) return Math.floor(d/60)+'m ago';
+    if(d<86400) return Math.floor(d/3600)+'h ago';
+    return Math.floor(d/86400)+'d ago';
+  }
+
+  var header = document.createElement('div');
+  header.style.cssText = 'display:flex;align-items:center;justify-content:space-between;margin-bottom:20px';
+  var unseenCount = arr.filter(function(t){ return t.ts > seenTs; }).length;
+  header.innerHTML = `
+    <div>
+      <div style="font-family:var(--h);font-size:15px;font-weight:700;color:var(--white)">Community Messages</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px">${arr.length} total · ${unseenCount} new</div>
+    </div>
+    ${arr.length ? `<button class="adm-clear-btn" onclick="clearAllTestis()">Clear All</button>` : ''}
+  `;
+  wrap.innerHTML = '';
+  wrap.appendChild(header);
+
+  if(!arr.length){
+    wrap.innerHTML += '<div style="text-align:center;padding:40px;color:rgba(255,255,255,0.25);font-size:13px;border:1px dashed rgba(255,255,255,0.08);border-radius:10px">No community messages yet.</div>';
+    return;
+  }
+
+  arr.slice().reverse().forEach(function(t){
+    var isUnread = t.ts > seenTs;
+    var card = document.createElement('div');
+    card.className = 'adm-notif-card' + (isUnread?' unread':'');
+    card.innerHTML = `
+      ${isUnread ? '<div class="adm-notif-unread-dot"></div>' : '<div style="width:7px;flex-shrink:0"></div>'}
+      <div class="adm-notif-avatar">${initials(t.name)}</div>
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;align-items:baseline;gap:4px;flex-wrap:wrap">
+          <span class="adm-notif-name">${escHtml(t.name)}</span>
+          ${isUnread?'<span style="font-size:9px;background:var(--accent);color:#fff;padding:1px 6px;border-radius:6px;letter-spacing:0.06em">NEW</span>':''}
+          <span class="adm-notif-time">${timeAgo(t.ts)}</span>
+        </div>
+        <div class="adm-notif-msg">${escHtml(t.msg)}</div>
+      </div>
+    `;
+    wrap.appendChild(card);
+  });
+}
+
+function clearAllTestis(){
+  if(!confirm('Delete all community messages? This cannot be undone.')) return;
+  localStorage.removeItem('cx_testimonials');
+  localStorage.removeItem(NOTIF_SEEN_KEY);
+  updateNotifBadge();
+  renderAdmNotifs();
+  // Also re-render the public testimonials section
+  if(typeof window.renderTestis === 'function') window.renderTestis();
+}
+
+// Poll for new messages every 30s while admin is open
+setInterval(function(){
+  updateNotifBadge();
+  if(document.getElementById('admNotifs') && document.getElementById('admNotifs').style.display !== 'none'){
+    renderAdmNotifs();
+  }
+}, 30000);
+
+function escHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+
+// Apply on load
+applyAssets();
+applySlides();
+applyMedia();
+applyYoutube();
+// Initial badge check (after testimonials IIFE runs)
+setTimeout(updateNotifBadge, 500);
+
+/* ── HERO BACKGROUND VIDEO ─────────────────────────────────────── */
+(function(){
+  var v = document.getElementById('heroBgVideo');
+  if(!v) return;
+
+  function restartVideo(){
+    v.currentTime = 0;
+    v.play().catch(function(){});
+  }
+  v.addEventListener('ended', restartVideo);
+
+  var loopTimer;
+  function scheduleLoop(){
+    clearTimeout(loopTimer);
+    loopTimer = setTimeout(restartVideo, 10000);
+  }
+  v.addEventListener('playing', scheduleLoop);
+  v.addEventListener('seeked',  scheduleLoop);
+
+  v.muted = true;
+  v.play().catch(function(){});
+})();
+
+/* ── MUTE TOGGLE ──────────────────────────────────────────────── */
+function toggleMute(){
+  var v    = document.getElementById('heroBgVideo');
+  var icon = document.getElementById('muteIcon');
+  v.muted  = !v.muted;
+  // swap icon: speaker-on vs speaker-muted
+  icon.innerHTML = v.muted
+    ? '<path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06A8.99 8.99 0 0 0 17.73 19L19 20.27 20.27 19 5.27 4 4.27 3zM12 4 9.91 6.09 12 8.18V4z"/>'
+    : '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z"/>';
+}
+
+
+/* ── TESTIMONIALS ─────────────────────────────────────────────── */
+(function(){
+  var STORE_KEY = 'cx_testimonials';
+  function loadTestis(){ try{ return JSON.parse(localStorage.getItem(STORE_KEY))||[]; }catch{ return []; } }
+  function saveTestis(arr){ localStorage.setItem(STORE_KEY, JSON.stringify(arr)); }
+  function initials(name){ return name.trim().split(' ').map(function(w){return w[0]||'';}).join('').toUpperCase().slice(0,2)||'?'; }
+  function timeAgo(ts){
+    var d=Math.floor((Date.now()-ts)/1000);
+    if(d<60) return 'just now';
+    if(d<3600) return Math.floor(d/60)+'m ago';
+    if(d<86400) return Math.floor(d/3600)+'h ago';
+    return Math.floor(d/86400)+'d ago';
+  }
+  function escT(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  function renderTestis(){
+    var arr=loadTestis(), grid=document.getElementById('testiGrid'), cnt=document.getElementById('testiCount');
+    if(!grid) return;
+    cnt.textContent=arr.length+(arr.length===1?' message':' messages');
+    if(!arr.length){ grid.innerHTML='<div class="testi-empty">No messages yet — be the first to leave one!</div>'; return; }
+    grid.innerHTML=arr.slice().reverse().map(function(t,i){
+      return '<div class="testi-card" style="animation-delay:'+(i*0.06)+'s">'+
+        '<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">'+
+          '<div class="testi-avatar">'+initials(t.name)+'</div>'+
+          '<div><div class="testi-name">'+escT(t.name)+'</div><div class="testi-date">'+timeAgo(t.ts)+'</div></div>'+
+        '</div>'+
+        '<div class="testi-stars">★★★★★</div>'+
+        '<div class="testi-msg">'+escT(t.msg)+'</div>'+
+      '</div>';
+    }).join('');
+  }
+
+  // Expose globally so admin clear button can re-render
+  window.renderTestis = renderTestis;
+
+  window.submitTestimonial = async function(){
+    var name=document.getElementById('cxName').value.trim();
+    var email=document.getElementById('cxEmail').value.trim();
+    var msg=document.getElementById('cxMsg').value.trim();
+    var btn=document.getElementById('cxSubmit');
+    var info=document.getElementById('cxFormMsg');
+    info.className='cx-form-msg';
+    if(!name){ info.className='cx-form-msg err'; info.textContent='Please enter your name.'; return; }
+    if(!msg){  info.className='cx-form-msg err'; info.textContent='Please write a message.';  return; }
+    btn.disabled=true; btn.textContent='Sending…';
+    try{
+      await fetch('https://formspree.io/f/xpwzgkrd',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({name:name,email:email||'(not provided)',message:msg,_subject:'New CENEMA-X Testimonial from '+name})
+      });
+    }catch(e){}
+    var arr=loadTestis();
+    arr.push({name:name,msg:msg,ts:Date.now()});
+    saveTestis(arr);
+    renderTestis();
+    // Update admin badge if open
+    if(typeof updateNotifBadge === 'function') updateNotifBadge();
+    document.getElementById('cxName').value='';
+    document.getElementById('cxEmail').value='';
+    document.getElementById('cxMsg').value='';
+    btn.disabled=false; btn.textContent='Send Message';
+    info.className='cx-form-msg ok';
+    info.textContent='✅ Thank you! Your message is now live below.';
+    setTimeout(function(){ info.className='cx-form-msg'; },4000);
+  };
+
+  setInterval(renderTestis,60000);
+  renderTestis();
+})();
+
+</script>
+</body>
+</html>
