@@ -1987,7 +1987,22 @@ const SLIDE_DEFAULTS = [
 ];
 
 function loadSlides(){
-  try{ return JSON.parse(localStorage.getItem('cx_slides')) || SLIDE_DEFAULTS; }
+  try{
+    const saved = JSON.parse(localStorage.getItem('cx_slides'));
+    if(!saved) return SLIDE_DEFAULTS;
+    // Always use the latest img path from SLIDE_DEFAULTS
+    return SLIDE_DEFAULTS.map(function(def){
+      const s = saved.find(function(x){ return x.id === def.id; }) || {};
+      return Object.assign({}, def, {
+        label:      s.label      || def.label,
+        title:      s.title      || def.title,
+        desc:       s.desc       || def.desc,
+        emoji:      s.emoji      || def.emoji,
+        bundleLink: s.bundleLink || def.bundleLink,
+        img:        def.img        // ← always use the path baked into the HTML
+      });
+    });
+  }
   catch{ return SLIDE_DEFAULTS; }
 }
 function saveSlides(data){ localStorage.setItem('cx_slides', JSON.stringify(data)); }
@@ -2084,7 +2099,22 @@ function applySlides(){
   });
 }
 function loadAssets(){
-  try{ return JSON.parse(localStorage.getItem('cx_assets')) || ASSET_DEFAULTS; }
+  try{
+    const saved = JSON.parse(localStorage.getItem('cx_assets'));
+    if(!saved) return ASSET_DEFAULTS;
+    // Always use the latest img path from ASSET_DEFAULTS so GitHub image
+    // updates are never blocked by stale localStorage data.
+    return ASSET_DEFAULTS.map(function(def){
+      const s = saved.find(function(x){ return x.id === def.id; }) || {};
+      return Object.assign({}, def, {
+        name:  s.name  || def.name,
+        meta:  s.meta  || def.meta,
+        link:  s.link  || def.link,
+        emoji: s.emoji || def.emoji,
+        img:   def.img   // ← always use the path baked into the HTML
+      });
+    });
+  }
   catch{ return ASSET_DEFAULTS; }
 }
 
@@ -2623,6 +2653,5 @@ function toggleMute(){
 })();
 
 </script>
-  
 </body>
 </html>
