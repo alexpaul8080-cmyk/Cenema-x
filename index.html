@@ -1966,23 +1966,23 @@ document.addEventListener('keydown', function(e){
 
 // Asset data — editable via admin
 const ASSET_DEFAULTS = [
-  {id:'a0', name:'Cinematic Mobile Presets',   meta:'45 moody film presets · Lightroom Mobile', emoji:'🎞', img:'assets/Images/cinematic-mobile-presets.jpg',  link:'YOUR_MEGA_LINK'},
-  {id:'a1', name:'Desktop Preset Collection',  meta:'60 pro presets · Lightroom Classic',        emoji:'🖥', img:'assets/Images/desktop-preset-collection.jpg', link:'YOUR_MEGA_LINK'},
-  {id:'a2', name:'Whip & Zoom Transitions',    meta:'150 transitions · Premiere Pro',            emoji:'⚡', img:'assets/Images/whip-zoom-transitions.jpg',      link:'YOUR_MEGA_LINK'},
-  {id:'a3', name:'Film Grain + Light Leaks',   meta:'120 analog overlays · 4K ProRes',           emoji:'🌫', img:'assets/Images/film-grain-light-leaks.jpg',     link:'YOUR_MEGA_LINK'},
-  {id:'a4', name:'AutoCut Pro Plugin',         meta:'Beat-sync cutting tool · Premiere Pro',     emoji:'🎬', img:'assets/Images/autocut-pro-plugin.jpg',         link:'YOUR_MEGA_LINK'},
-  {id:'a5', name:'Glitch & Distort FX',        meta:'80 presets · After Effects',                emoji:'✨', img:'assets/Images/glitch-distort-fx.jpg',          link:'YOUR_MEGA_LINK'},
-  {id:'a6', name:'Void Display Font Pack',     meta:'5 exclusive display fonts',                 emoji:'🔤', img:'assets/Images/void-display-font-pack.jpg',     link:'YOUR_MEGA_LINK'},
-  {id:'a7', name:'Social Media PSD Kit',       meta:'40 templates · Instagram & YouTube',        emoji:'🗂', img:'assets/Images/social-media-psd-kit.jpg',       link:'YOUR_MEGA_LINK'},
-  {id:'a8', name:'Dark Matter 3D Pack',        meta:'60 high-res 3D renders',                    emoji:'⬡', img:'assets/Images/dark-matter-3d-pack.jpg',        link:'YOUR_MEGA_LINK'},
-  {id:'a9', name:'SFX Bundle',                 meta:'200+ cinematic sound effects',              emoji:'🔊', img:'assets/Images/sfx-bundle.jpg',                 link:'YOUR_MEGA_LINK'},
+  {id:'a0', name:'Cinematic Mobile Presets',   meta:'45 moody film presets · Lightroom Mobile', emoji:'🎞', img:'https://raw.githubusercontent.com/alexpaul8080-cmyk/Cenema-x/main/assets/Images/cinematic-mobile-presets.jpg',  link:'YOUR_MEGA_LINK'},
+  {id:'a1', name:'Desktop Preset Collection',  meta:'60 pro presets · Lightroom Classic',        emoji:'🖥', img:'https://raw.githubusercontent.com/alexpaul8080-cmyk/Cenema-x/main/assets/Images/desktop-preset-collection.jpg', link:'YOUR_MEGA_LINK'},
+  {id:'a2', name:'Whip & Zoom Transitions',    meta:'150 transitions · Premiere Pro',            emoji:'⚡', img:'https://raw.githubusercontent.com/alexpaul8080-cmyk/Cenema-x/main/assets/Images/whip-zoom-transitions.jpg',      link:'YOUR_MEGA_LINK'},
+  {id:'a3', name:'Film Grain + Light Leaks',   meta:'120 analog overlays · 4K ProRes',           emoji:'🌫', img:'https://raw.githubusercontent.com/alexpaul8080-cmyk/Cenema-x/main/assets/Images/film-grain-light-leaks.jpg',     link:'YOUR_MEGA_LINK'},
+  {id:'a4', name:'AutoCut Pro Plugin',         meta:'Beat-sync cutting tool · Premiere Pro',     emoji:'🎬', img:'https://raw.githubusercontent.com/alexpaul8080-cmyk/Cenema-x/main/assets/Images/autocut-pro-plugin.jpg',         link:'YOUR_MEGA_LINK'},
+  {id:'a5', name:'Glitch & Distort FX',        meta:'80 presets · After Effects',                emoji:'✨', img:'https://raw.githubusercontent.com/alexpaul8080-cmyk/Cenema-x/main/assets/Images/glitch-distort-fx.jpg',          link:'YOUR_MEGA_LINK'},
+  {id:'a6', name:'Void Display Font Pack',     meta:'5 exclusive display fonts',                 emoji:'🔤', img:'https://raw.githubusercontent.com/alexpaul8080-cmyk/Cenema-x/main/assets/Images/void-display-font-pack.jpg',     link:'YOUR_MEGA_LINK'},
+  {id:'a7', name:'Social Media PSD Kit',       meta:'40 templates · Instagram & YouTube',        emoji:'🗂', img:'https://raw.githubusercontent.com/alexpaul8080-cmyk/Cenema-x/main/assets/Images/social-media-psd-kit.jpg',       link:'YOUR_MEGA_LINK'},
+  {id:'a8', name:'Dark Matter 3D Pack',        meta:'60 high-res 3D renders',                    emoji:'⬡', img:'https://raw.githubusercontent.com/alexpaul8080-cmyk/Cenema-x/main/assets/Images/dark-matter-3d-pack.jpg',        link:'YOUR_MEGA_LINK'},
+  {id:'a9', name:'SFX Bundle',                 meta:'200+ cinematic sound effects',              emoji:'🔊', img:'https://raw.githubusercontent.com/alexpaul8080-cmyk/Cenema-x/main/assets/Images/sfx-bundle.jpg',                 link:'YOUR_MEGA_LINK'},
 ];
 
 const SLIDE_DEFAULTS = [
-  {id:'s0', label:'Photo',         title:'Cinematic presets for every shot.',      desc:'45 mobile + 60 desktop Lightroom presets. Moody, filmic, editorial.', emoji:'🎞', img:'assets/Images/slide-photo.jpg'},
-  {id:'s1', label:'Video',         title:'150 transitions drag & drop.',           desc:'Whip pans, zooms, glitches, and smooth cuts. Built for Premiere Pro.',         img:'assets/Images/slide-video.jpg'},
-  {id:'s2', label:'Overlays',      title:'Analog grain & light leaks.',            desc:'120 film grain overlays and light leaks in 4K ProRes.', emoji:'🎞',            img:'assets/Images/slide-overlays.jpg'},
-  {id:'s3', label:'Design + Audio',title:'Fonts, PSDs & SFX.',                    desc:'5 display fonts, 40 PSD social templates, and 200+ cinematic sound effects.', emoji:'🔊', img:'assets/Images/slide-design-audio.jpg'},
+  {id:'s0', label:'Photo',         title:'Cinematic presets for every shot.',      desc:'45 mobile + 60 desktop Lightroom presets. Moody, filmic, editorial.', emoji:'🎞', img:'https://raw.githubusercontent.com/alexpaul8080-cmyk/Cenema-x/main/assets/Images/slide-photo.jpg'},
+  {id:'s1', label:'Video',         title:'150 transitions drag & drop.',           desc:'Whip pans, zooms, glitches, and smooth cuts. Built for Premiere Pro.',         img:'https://raw.githubusercontent.com/alexpaul8080-cmyk/Cenema-x/main/assets/Images/slide-video.jpg'},
+  {id:'s2', label:'Overlays',      title:'Analog grain & light leaks.',            desc:'120 film grain overlays and light leaks in 4K ProRes.', emoji:'🎞',            img:'https://raw.githubusercontent.com/alexpaul8080-cmyk/Cenema-x/main/assets/Images/slide-overlays.jpg'},
+  {id:'s3', label:'Design + Audio',title:'Fonts, PSDs & SFX.',                    desc:'5 display fonts, 40 PSD social templates, and 200+ cinematic sound effects.', emoji:'🔊', img:'https://raw.githubusercontent.com/alexpaul8080-cmyk/Cenema-x/main/assets/Images/slide-design-audio.jpg'},
   {id:'s4', label:'Bundle',        title:'Get the full bundle.',                   desc:'400+ files. Every pack. One download. Free forever.', bundleLink:'YOUR_MEGA_LINK'},
 ];
 
@@ -2116,6 +2116,11 @@ function applyAssets(){
         const img = document.createElement('img');
         img.src = d.img; img.className='adm-live-img';
         img.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:0;z-index:1';
+        img.onerror = function(){
+          // Image failed to load (broken path) — remove it and show emoji fallback
+          img.remove();
+          if(emojiEl){ emojiEl.textContent = d.emoji || emojiEl.textContent; emojiEl.style.display=''; }
+        };
         thumbEl.appendChild(img);
         if(emojiEl) emojiEl.style.display='none';
       } else {
@@ -2507,6 +2512,23 @@ setInterval(function(){
 }, 30000);
 
 function escHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+
+// Migrate: clear stale localStorage entries that contain broken relative asset paths
+(function(){
+  function shouldClear(key){
+    try{
+      const raw = localStorage.getItem(key);
+      if(!raw) return false;
+      // Clear if contains old relative paths OR all images are empty (stale blank cache)
+      if(raw.includes('assets/Images/')) return true;
+      const parsed = JSON.parse(raw);
+      if(Array.isArray(parsed) && parsed.every(function(d){ return !d.img; })) return true;
+      return false;
+    }catch(e){ return false; }
+  }
+  if(shouldClear('cx_assets'))  localStorage.removeItem('cx_assets');
+  if(shouldClear('cx_slides'))  localStorage.removeItem('cx_slides');
+})();
 
 // Apply on load
 applyAssets();
