@@ -726,10 +726,10 @@ footer{border-top:1px solid var(--border2);padding:32px 40px;display:flex;align-
             <h2 class="slide-title" style="font-size:clamp(40px,6vw,80px)">Get the full<br><em>bundle.</em></h2>
             <p class="slide-desc" style="margin:0 auto 40px;text-align:center">400+ files. Every pack. One download. Free forever.</p>
             <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-              <a id="sl-bundle-link" href="YOUR_MEGA_LINK" target="_blank" class="btn-main" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:14px;padding:16px 40px">
+              <button id="sl-bundle-link" onclick="downloadAll(this)" class="btn-main" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;padding:16px 40px;border:none;cursor:none">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
                 Download Everything
-              </a>
+              </button>
               <a href="#assets" class="btn-out" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:14px;padding:16px 32px">Browse Assets</a>
             </div>
             <div style="display:flex;gap:24px;justify-content:center;margin-top:48px;padding-top:32px;border-top:1px solid var(--border2)">
@@ -1004,10 +1004,10 @@ footer{border-top:1px solid var(--border2);padding:32px 40px;display:flex;align-
     <div class="bundle-right">
       <div class="bundle-price" style="color:var(--white)">FREE</div>
       <div class="bundle-price-label" style="color:var(--white);opacity:0.7">400+ files · Always free</div>
-      <a href="YOUR_BUNDLE_DRIVE_LINK" target="_blank" class="btn-main" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">
+      <button onclick="downloadAll(this)" class="btn-main" style="display:inline-flex;align-items:center;gap:8px;border:none;cursor:none">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
         Download Bundle
-      </a>
+      </button>
     </div>
   </div>
 
@@ -2326,6 +2326,44 @@ async function fetchAndApplyPublicLinks(){
       if(bbtn) bbtn.href = links['bundle'];
     }
   } catch(e){ /* silently fail — fallback to localStorage */ }
+}
+
+// ── DOWNLOAD ALL — opens every asset link with a small delay ──
+function downloadAll(btn){
+  // Collect all live .dl-btn hrefs already applied by fetchAndApplyPublicLinks
+  const links = [];
+  document.querySelectorAll('.asset-card').forEach(function(card){
+    const a = card.querySelector('.dl-btn');
+    if(a && a.href &&
+       !a.href.includes('YOUR_MEGA_LINK') &&
+       !a.href.includes('YOUR_DRIVE_LINK') &&
+       a.href !== window.location.href){
+      links.push(a.href);
+    }
+  });
+
+  if(links.length === 0){
+    alert('No download links have been set yet. Please add links via the admin panel.');
+    return;
+  }
+
+  // Button feedback
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg> Opening ' + links.length + ' downloads…';
+  btn.disabled = true;
+
+  // Open each link with 700ms stagger — prevents browser popup blocking
+  links.forEach(function(url, i){
+    setTimeout(function(){
+      window.open(url, '_blank', 'noopener,noreferrer');
+      if(i === links.length - 1){
+        setTimeout(function(){
+          btn.innerHTML = orig;
+          btn.disabled = false;
+        }, 800);
+      }
+    }, i * 700);
+  });
 }
 
 function adminSave(){
