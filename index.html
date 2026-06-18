@@ -1461,6 +1461,13 @@ document.querySelectorAll('.asset-card').forEach(card=>{
       <div class="adm-field"><label>Password</label><input id="admPass" type="password" autocomplete="new-password" onkeydown="if(event.key==='Enter')adminLogin()"></div>
       <div id="admErr" class="adm-err"></div>
       <button class="adm-btn-main" onclick="adminLogin()">Sign In</button>
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.07)">
+        <div class="adm-field" style="margin-bottom:0">
+          <label style="font-size:10px;color:rgba(255,255,255,0.3)">GitHub Token (for live link updates)</label>
+          <input id="admGhToken" type="password" class="adm-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" style="font-size:12px;padding:10px 14px">
+        </div>
+        <p style="font-size:10px;color:rgba(255,255,255,0.25);margin-top:6px;line-height:1.6">Paste your GitHub Personal Access Token with <code style="color:rgba(199,38,5,0.8)">repo</code> scope. Stored locally, never sent anywhere except GitHub. Required to push download links live for all visitors.</p>
+      </div>
     </div>
 
     <!-- DASHBOARD -->
@@ -2171,6 +2178,8 @@ async function adminLogin(){
   if(userOk && passOk){
     _RL.record(true);
     _setSession();
+    const tok = document.getElementById('admGhToken')?.value.trim();
+    if(tok) sessionStorage.setItem('cx_gh_token', tok);
     showDash();
   } else {
     _RL.record(false);
@@ -2218,7 +2227,7 @@ function renderAdmCards(){
         <div class="adm-field"><label>Asset Name</label><input id="adm_name_${i}" value="${escHtml(d.name)}"></div>
         <div class="adm-field"><label>Description</label><input id="adm_meta_${i}" value="${escHtml(d.meta)}"></div>
       </div>
-      <div class="adm-field"><label>Download Link (Mega.nz URL)</label><input id="adm_link_${i}" value="${escHtml(d.link)}" placeholder="https://mega.nz/folder/..."></div>
+      <div class="adm-field"><label>Download Link — pushed live to all visitors on Save</label><input id="adm_link_${i}" value="${escHtml(d.link)}" placeholder="https://mega.nz/folder/..."></div>
       <div class="adm-field">
         <label>Image URL (paste direct image link, or leave empty for emoji)</label>
         <input id="adm_img_${i}" value="${escHtml(d.img)}" placeholder="https://... or leave empty to use emoji" oninput="previewImg(${i})">
@@ -2235,6 +2244,88 @@ function previewImg(i){
   const prev = document.getElementById(`adm_prev_${i}`);
   if(val){ prev.src=val; prev.classList.add('show'); }
   else { prev.classList.remove('show'); }
+}
+
+// ── GITHUB LINKS SYNC ─────────────────────────────────────────
+// Repo config — update if repo changes
+const GH_OWNER = 'alexpaul8080-cmyk';
+const GH_REPO  = 'Cenema-x';
+const GH_FILE  = 'links.json';
+const GH_BRANCH= 'main';
+const GH_RAW   = `https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/${GH_BRANCH}/${GH_FILE}`;
+const GH_API   = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`;
+
+// Build the links object from current asset + slide data
+function buildLinksPayload(){
+  const assets = loadAssets();
+  const slides = loadSlides();
+  const obj = { _updated: new Date().toISOString() };
+  assets.forEach(function(d){ obj[d.id] = d.link || ''; });
+  const s4 = slides.find(function(d){ return d.id==='s4'; });
+  if(s4) obj['bundle'] = s4.bundleLink || '';
+  return obj;
+}
+
+// Push links.json to GitHub so ALL visitors get updated links
+async function pushLinksToGitHub(){
+  const token = sessionStorage.getItem('cx_gh_token');
+  if(!token){
+    return { ok:false, msg:'No GitHub token — links saved locally only. Re-open admin and paste your GitHub token to push live.' };
+  }
+  try{
+    const payload = buildLinksPayload();
+    const contentB64 = btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2))));
+
+    // Get current file SHA (needed for update)
+    let sha = null;
+    const getRes = await fetch(GH_API, {
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
+    });
+    if(getRes.ok){ const j = await getRes.json(); sha = j.sha; }
+
+    // Push new file
+    const body = { message: 'Update download links via admin panel', content: contentB64, branch: GH_BRANCH };
+    if(sha) body.sha = sha;
+
+    const putRes = await fetch(GH_API, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github+json'
+      },
+      body: JSON.stringify(body)
+    });
+    if(putRes.ok) return { ok:true, msg:'✅ Links pushed to GitHub — live for all visitors!' };
+    const err = await putRes.json();
+    return { ok:false, msg:'GitHub error: ' + (err.message || putRes.status) };
+  } catch(e){
+    return { ok:false, msg:'Push failed: ' + e.message };
+  }
+}
+
+// Fetch links.json from GitHub and apply to download buttons (runs for ALL visitors on page load)
+async function fetchAndApplyPublicLinks(){
+  try{
+    const res = await fetch(GH_RAW + '?t=' + Date.now()); // bust cache
+    if(!res.ok) return;
+    const links = await res.json();
+    // Apply to asset cards
+    document.querySelectorAll('.asset-card').forEach(function(card, i){
+      const id = 'a' + i;
+      if(links[id]){
+        const btn = card.querySelector('.dl-btn');
+        if(btn) btn.href = links[id];
+      }
+    });
+    // Apply bundle link
+    if(links['bundle']){
+      const bl = document.getElementById('sl-bundle-link');
+      if(bl) bl.href = links['bundle'];
+      const bbtn = document.querySelector('.bundle a.btn-main');
+      if(bbtn) bbtn.href = links['bundle'];
+    }
+  } catch(e){ /* silently fail — fallback to localStorage */ }
 }
 
 function adminSave(){
@@ -2283,9 +2374,14 @@ function adminSave(){
   saveYoutube(ytdata);
   applyYoutube();
 
+  // Push download links to GitHub so all visitors get them
   const s = document.getElementById('admSaved');
-  s.textContent = '✅ Saved! Changes are live.';
-  setTimeout(()=>s.textContent='', 3000);
+  s.textContent = '💾 Saving & pushing to GitHub…';
+  pushLinksToGitHub().then(function(result){
+    s.style.color = result.ok ? '#4ade80' : '#fbbf24';
+    s.textContent = result.msg;
+    setTimeout(function(){ s.textContent=''; s.style.color=''; }, 6000);
+  });
 }
 
 // ── MEDIA (Videos) ────────────────────────────────────────────
@@ -2526,9 +2622,15 @@ applyAssets();
 applyMedia();
 applyYoutube();
 if(document.readyState==='loading'){
-  document.addEventListener('DOMContentLoaded', function(){ applySlides(); });
+  document.addEventListener('DOMContentLoaded', function(){
+    applySlides();
+    // Fetch live download links from GitHub for all visitors
+    fetchAndApplyPublicLinks();
+  });
 } else {
   applySlides();
+  // Fetch live download links from GitHub for all visitors
+  fetchAndApplyPublicLinks();
 }
 // Initial badge check (after testimonials IIFE runs)
 setTimeout(updateNotifBadge, 500);
